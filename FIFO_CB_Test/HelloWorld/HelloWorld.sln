@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloWorld", "HelloWorld.vcxproj", "{2A068383-D662-4043-A777-01980C569DD0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LiquidCrystal_I2C-1.1.2", "Libraries\LiquidCrystal_I2C\1.1.2\LiquidCrystal_I2C\LiquidCrystal_I2C-1.1.2.vcxitems", "{5CA8242A-0A58-4B7C-83A9-2E7515331F3A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OneWire-2.3.5", "Libraries\OneWire\2.3.5\OneWire\OneWire-2.3.5.vcxitems", "{5B3CCAE1-D257-4696-8BA4-D711722E40F8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SD-1.2.4", "Libraries\SD\1.2.4\SD\SD-1.2.4.vcxitems", "{AEF73F21-C35B-4BBF-8711-EAA78477BB3E}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Libraries\LiquidCrystal_I2C\1.1.2\LiquidCrystal_I2C\LiquidCrystal_I2C-1.1.2.vcxitems*{2a068383-d662-4043-a777-01980c569dd0}*SharedItemsImports = 4
+		Libraries\OneWire\2.3.5\OneWire\OneWire-2.3.5.vcxitems*{2a068383-d662-4043-a777-01980c569dd0}*SharedItemsImports = 4
+		Libraries\SD\1.2.4\SD\SD-1.2.4.vcxitems*{2a068383-d662-4043-a777-01980c569dd0}*SharedItemsImports = 4
+		Libraries\OneWire\2.3.5\OneWire\OneWire-2.3.5.vcxitems*{5b3ccae1-d257-4696-8ba4-d711722e40f8}*SharedItemsImports = 9
+		Libraries\LiquidCrystal_I2C\1.1.2\LiquidCrystal_I2C\LiquidCrystal_I2C-1.1.2.vcxitems*{5ca8242a-0a58-4b7c-83a9-2e7515331f3a}*SharedItemsImports = 9
+		Libraries\SD\1.2.4\SD\SD-1.2.4.vcxitems*{aef73f21-c35b-4bbf-8711-eaa78477bb3e}*SharedItemsImports = 9
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A068383-D662-4043-A777-01980C569DD0}.Debug|x86.ActiveCfg = Debug|Win32
+		{2A068383-D662-4043-A777-01980C569DD0}.Debug|x86.Build.0 = Debug|Win32
+		{2A068383-D662-4043-A777-01980C569DD0}.Release|x86.ActiveCfg = Release|Win32
+		{2A068383-D662-4043-A777-01980C569DD0}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6BA7DC87-C6A4-44BE-9D6A-E0E76B811CAB}
+	EndGlobalSection
+EndGlobal
