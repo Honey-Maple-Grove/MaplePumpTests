@@ -108,12 +108,12 @@
   <ItemGroup>
     <ClInclude Include="..\..\Solutions\MaplePump\DefinedValues.h" />
     <ClInclude Include="..\..\Solutions\MaplePump\Enms.h" />
-    <ClInclude Include="..\..\Solutions\MaplePump\Interrupts.h" />
+    <ClInclude Include="Interrupts.h" />
     <ClInclude Include="__vm\.FIFO Interrupts.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Solutions\MaplePump\Enms.cpp" />
-    <ClCompile Include="..\..\Solutions\MaplePump\Interrupts.cpp" />
+    <ClCompile Include="Interrupts.cpp" />
   </ItemGroup>
   <PropertyGroup>
     <DebuggerFlavor>VisualMicroDebugger</DebuggerFlavor>
