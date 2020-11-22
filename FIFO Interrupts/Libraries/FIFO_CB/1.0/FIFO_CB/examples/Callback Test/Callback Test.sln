@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Callback Test", "Callback Test.vcxproj", "{896CDE41-E77B-405D-8BA1-DF8136441745}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FIFO_CB-1.0", "Libraries\FIFO_CB\1.0\FIFO_CB\FIFO_CB-1.0.vcxitems", "{34DADA6C-A5B7-43C4-A021-407D53032D8D}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Libraries\FIFO_CB\1.0\FIFO_CB\FIFO_CB-1.0.vcxitems*{34dada6c-a5b7-43c4-a021-407d53032d8d}*SharedItemsImports = 9
+		Libraries\FIFO_CB\1.0\FIFO_CB\FIFO_CB-1.0.vcxitems*{896cde41-e77b-405d-8ba1-df8136441745}*SharedItemsImports = 4
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{896CDE41-E77B-405D-8BA1-DF8136441745}.Debug|x86.ActiveCfg = Debug|Win32
+		{896CDE41-E77B-405D-8BA1-DF8136441745}.Debug|x86.Build.0 = Debug|Win32
+		{896CDE41-E77B-405D-8BA1-DF8136441745}.Release|x86.ActiveCfg = Release|Win32
+		{896CDE41-E77B-405D-8BA1-DF8136441745}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {344C7CC2-448F-4674-B49A-D29A166F990F}
+	EndGlobalSection
+EndGlobal
