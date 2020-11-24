@@ -88,7 +88,5 @@ typedef void *__builtin_va_list;
 #define pgm_read_ptr(address_short)   short()
 
 #include "FIFO Interrupts.ino"
-#include "Libraries\FIFO_CB\1.0\FIFO_CB\FIFO_CB.ino"
-#include "Libraries\FIFO_CB\1.0\FIFO_CB\FIFO_CB_Test.ino"
 #endif
 #endif
