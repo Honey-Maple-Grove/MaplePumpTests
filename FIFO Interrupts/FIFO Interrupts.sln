@@ -7,13 +7,17 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FIFO Interrupts", "FIFO Int
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TimerThree-master-1.1", "Libraries\TimerThree-master\1.1\TimerThree-master\TimerThree-master-1.1.vcxitems", "{7CBE0B3B-ACA4-422E-B764-8213A2CDE8B3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TimerOne-master-1.1", "Libraries\TimerOne-master\1.1\TimerOne-master\TimerOne-master-1.1.vcxitems", "{132BB99D-AD8E-49DF-B7FC-AC6372C61244}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FIFO_CB-1.0", "Libraries\FIFO_CB\1.0\FIFO_CB\FIFO_CB-1.0.vcxitems", "{32ABBD77-7179-45C2-AF3F-7A75A619B33F}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Libraries\TimerOne-master\1.1\TimerOne-master\TimerOne-master-1.1.vcxitems*{132bb99d-ad8e-49df-b7fc-ac6372c61244}*SharedItemsImports = 9
 		Libraries\FIFO_CB\1.0\FIFO_CB\FIFO_CB-1.0.vcxitems*{32abbd77-7179-45c2-af3f-7a75a619b33f}*SharedItemsImports = 9
 		Libraries\TimerThree-master\1.1\TimerThree-master\TimerThree-master-1.1.vcxitems*{7cbe0b3b-aca4-422e-b764-8213a2cde8b3}*SharedItemsImports = 9
 		Libraries\FIFO_CB\1.0\FIFO_CB\FIFO_CB-1.0.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+		Libraries\TimerOne-master\1.1\TimerOne-master\TimerOne-master-1.1.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
 		Libraries\TimerThree-master\1.1\TimerThree-master\TimerThree-master-1.1.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

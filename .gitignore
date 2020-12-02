@@ -33,3 +33,7 @@
 *.db-shm
 *.db-wal
 *.opendb
+*.db
+*.db
+*.db
+*.ipch

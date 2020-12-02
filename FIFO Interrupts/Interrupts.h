@@ -11,13 +11,13 @@
 #include "DefinedValues.h"
 #include "Enms.h"
 #include <FIFO_CB.h>
-#include "Heater.h"
-#include "SapLines.h"
-#include "SapTankPump.h"
-#include "TankFloat.h"
-#include "TempCheck.h"
-#include "Vacuum.h"
-#include "VacuumPump.h"
+//#include "Heater.h"
+//#include "SapLines.h"
+//#include "SapTankPump.h"
+//#include "TankFloat.h"
+//#include "TempCheck.h"
+//#include "Vacuum.h"
+//#include "VacuumPump.h"
 
 class InterruptsClass
 {
@@ -31,16 +31,18 @@ public:
 	//static void SetupInterrupts();
 	static bool IsInterruptQueued();
 	static int QueueSize();
-	static void TimeCheckSensors();
-	static void ManageHeater();
-	static void ManageVacuumPump();
-	static void ManageSapPump();
+	//static void ManageHeater();
+	//static void ManageVacuumPump();
+	//static void ManageSapPump();
 	static void Restart();
-	static void RunNextInterruptFunction();
-	static void StartInterrupts();
-	static void StopInterrupts();
+	//static void RunNextInterruptFunction();
+	static function_pointer PeekNextInterruptFunction();
+	static function_pointer PopNextInterruptFunction();
+	//static void StartInterrupts();
+	//static void StopInterrupts();
 	static void Shutdown();
-	static void TestSapLines();
+	//static void TestSapLines();
+	static void TimeCheckSensors();
 };
 
 extern InterruptsClass Interrupts;

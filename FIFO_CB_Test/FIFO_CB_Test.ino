@@ -25,24 +25,9 @@
  * SOFTWARE.
  */
 
-#include "FIFO_CB.h"
+#include "FIFO_AF.h"
 
-FIFO_CB myBuffer;
-
-
-void setup() {
-  //Open serial port at 115200 baud
-  Serial.begin(115200);
-
-  //Wait until the serial port has opened
-  while (!Serial) delay(1);
-
-  //Wait a little bit to make sure we don't get any garbage on the serial monitor
-  delay(100);
-
-  AddToFIFO();
-  EmptyFIFO();
-}
+FIFO_AF myBuffer;
 
 void AddToFIFO() {
     Serial.println("Pushing CB_1");
@@ -51,8 +36,30 @@ void AddToFIFO() {
     Serial.println("Pushing CB_2");
     myBuffer.push(CB_2);
     delay(100);
-    Serial.println("Pushing CB_3");
-    myBuffer.push(CB_3);
+    Serial.println("Pushing Priority1");
+	Serial.print("Head=");
+	Serial.println(myBuffer.headptr());
+	Serial.print("Tail=");
+	Serial.println(myBuffer.tailptr());
+    myBuffer.pushheader(Priority1);
+	Serial.print("Head=");
+	Serial.println(myBuffer.headptr());
+	Serial.print("Tail=");
+	Serial.println(myBuffer.tailptr());
+    delay(100);
+    Serial.println("Pushing Priority2");
+    myBuffer.pushheader(Priority2);
+	Serial.print("Head=");
+	Serial.println(myBuffer.headptr());
+	Serial.print("Tail=");
+	Serial.println(myBuffer.tailptr());
+    delay(100);
+    Serial.println("Pushing CB_6");
+    myBuffer.push(CB_6);
+	Serial.print("Head=");
+	Serial.println(myBuffer.headptr());
+	Serial.print("Tail=");
+	Serial.println(myBuffer.tailptr());
     delay(100);
 }
 
@@ -80,4 +87,28 @@ void CB_2() {
 
 void CB_3() {
     Serial.println("CB3 called");
+}
+void Priority1() {
+    Serial.println("Priority1 called");
+}
+
+void Priority2() {
+    Serial.println("Priority2 called");
+}
+
+void CB_6() {
+    Serial.println("CB6 called");
+}
+void setup() {
+  //Open serial port at 115200 baud
+  Serial.begin(115200);
+
+  //Wait until the serial port has opened
+  while (!Serial) delay(1);
+  Serial.println("Test Started");
+  //Wait a little bit to make sure we don't get any garbage on the serial monitor
+  delay(100);
+
+  AddToFIFO();
+  EmptyFIFO();
 }

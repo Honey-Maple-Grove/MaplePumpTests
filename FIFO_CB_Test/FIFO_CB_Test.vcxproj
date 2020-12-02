@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C5F80730-F44F-4478-BDAE-6634EFC2CA88}</ProjectGuid>
+    <RootNamespace>
+    </RootNamespace>
+    <ProjectName>FIFO_CB_Test</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>
+    </PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>
+    </PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>
+    </PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>
+    </PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ReferencePath>C:\Users\Abbott\Documents\Arduino\MaplePump;$(ReferencePath)</ReferencePath>
+    <IncludePath>C:\Users\Abbott\Documents\Arduino\MaplePump;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\FIFO_CB_Test;$(ProjectDir)..\..\hardware\arduino\avr\libraries\Wire\src;$(ProjectDir)..\..\libraries\SD\src;$(ProjectDir)..\..\hardware\arduino\avr\libraries\SPI\src;$(ProjectDir)..\..\hardware\arduino\avr\cores\arduino;$(ProjectDir)..\..\hardware\arduino\avr\variants\mega;$(ProjectDir)..\..\MaplePump;$(ProjectDir)..\..\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;$(ProjectDir)..\..\hardware\tools\avr\avr\include;$(ProjectDir)..\..\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;$(ProjectDir)..\..\hardware\tools\avr\avr\include-fixed;$(ProjectDir)..\..\hardware\tools\avr\avr\include\avr;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ProjectDir)__vm\.FIFO_CB_Test.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <PreprocessorDefinitions>__AVR_atmega2560__;__AVR_ATmega2560__;F_CPU=16000000L;ARDUINO=108013;ARDUINO_AVR_MEGA2560;ARDUINO_ARCH_AVR;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="VisualMicro" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FIFO_CB_Test.ino">
+      <FileType>CppCode</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\MaplePump\FIFO_AF.h" />
+    <ClInclude Include="HelloWorld\Libraries\LiquidCrystal_I2C\1.1.2\LiquidCrystal_I2C\LiquidCrystal_I2C.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="HelloWorld\Libraries\MemoryFree-master\0.0.0\MemoryFree-master\MemoryFree.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="HelloWorld\Libraries\OneWire\2.3.5\OneWire\OneWire.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="HelloWorld\Libraries\OneWire\2.3.5\OneWire\util\OneWire_direct_gpio.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="HelloWorld\Libraries\OneWire\2.3.5\OneWire\util\OneWire_direct_regtype.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\SD.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\FatStructs.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\Sd2Card.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\Sd2PinMap.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\SdFat.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\SdFatmainpage.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\SdFatUtil.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\SdInfo.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="__vm\.FIFO_CB_Test.vsarduino.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\MaplePump\FIFO_AF.cpp" />
+    <ClCompile Include="HelloWorld\Libraries\LiquidCrystal_I2C\1.1.2\LiquidCrystal_I2C\LiquidCrystal_I2C.cpp" />
+    <ClCompile Include="HelloWorld\Libraries\MemoryFree-master\0.0.0\MemoryFree-master\MemoryFree.cpp" />
+    <ClCompile Include="HelloWorld\Libraries\OneWire\2.3.5\OneWire\OneWire.cpp" />
+    <ClCompile Include="HelloWorld\Libraries\SD\1.2.4\SD\src\File.cpp" />
+    <ClCompile Include="HelloWorld\Libraries\SD\1.2.4\SD\src\SD.cpp" />
+    <ClCompile Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\Sd2Card.cpp" />
+    <ClCompile Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\SdFile.cpp" />
+    <ClCompile Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\SdVolume.cpp" />
+  </ItemGroup>
+  <PropertyGroup>
+    <DebuggerFlavor>VisualMicroDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties arduino.upload.port="COM3" config.Release.customdebug_mega_atmega2560_debugger_type="universal" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

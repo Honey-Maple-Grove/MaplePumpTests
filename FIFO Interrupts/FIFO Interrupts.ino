@@ -19,17 +19,25 @@
 
 // The setup() function runs once each time the micro-controller starts
 
+#include "Action.h"
+#include "ActionBase.h"
 #include <FIFO_CB.h>
-#include <TimerThree.h>
-#include <Interrupts.h>
-#include <DefinedValues.h>
+#include "Interrupts.h"
+#include "DefinedValues.h"
+
+#include "TimerThree.h"
 const int led = LED_BUILTIN;  // the pin with a LED
 	int testCount = 0;
-void setup()
-{	{
+void TestSetup()
+{
+	
+}
+void TestState(){
+}
+void setup(){	
 	  pinMode(led, OUTPUT);
 	  Timer3.initialize(Timer_1_Sec);
-	  Timer3.attachInterrupt(testState); // blinkLED to run every 0.15 seconds
+	  Timer3.attachInterrupt(TestState); // blinkLED to run every 0.15 seconds
 
 	 Serial.begin(115200);
 	 while (!Serial);      // For 32u4 based microcontrollers like 32u4 Adalogger Feather
@@ -37,14 +45,9 @@ void setup()
 	TestSetup();
 }
 
-void TestSetup()
-{
-	
-}
 
 // Add the main program code into the continuous loop() function
-void loop()
-{
+void loop(){
 
 
 }

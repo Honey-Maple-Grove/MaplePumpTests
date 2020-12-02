@@ -52,6 +52,7 @@
   </ImportGroup>
   <ImportGroup Label="Shared">
     <Import Project="Libraries\TimerThree-master\1.1\TimerThree-master\TimerThree-master-1.1.vcxitems" Label="Shared" />
+    <Import Project="Libraries\TimerOne-master\1.1\TimerOne-master\TimerOne-master-1.1.vcxitems" Label="Shared" />
     <Import Project="Libraries\FIFO_CB\1.0\FIFO_CB\FIFO_CB-1.0.vcxitems" Label="Shared" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -75,7 +76,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\FIFO Interrupts;$(ProjectDir)Libraries\TimerThree-master\1.1\TimerThree-master;$(ProjectDir)Libraries\FIFO_CB\1.0\FIFO_CB;$(ProjectDir)..\..\hardware\arduino\avr\cores\arduino;$(ProjectDir)..\..\hardware\arduino\avr\variants\mega;$(ProjectDir)..\..\Solutions\MaplePump;$(ProjectDir)..\..\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;$(ProjectDir)..\..\hardware\tools\avr\avr\include;$(ProjectDir)..\..\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;$(ProjectDir)..\..\hardware\tools\avr\avr\include-fixed;$(ProjectDir)..\..\hardware\tools\avr\avr\include\avr;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\FIFO Interrupts;$(ProjectDir)Libraries\TimerThree-master\1.1\TimerThree-master;$(ProjectDir)Libraries\TimerOne-master\1.1\TimerOne-master;$(ProjectDir)Libraries\FIFO_CB\1.0\FIFO_CB;$(ProjectDir)..\..\hardware\arduino\avr\cores\arduino;$(ProjectDir)..\..\hardware\arduino\avr\variants\mega;$(ProjectDir)..\..\Solutions\MaplePump;$(ProjectDir)..\..\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;$(ProjectDir)..\..\hardware\tools\avr\avr\include;$(ProjectDir)..\..\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;$(ProjectDir)..\..\hardware\tools\avr\avr\include-fixed;$(ProjectDir)..\..\hardware\tools\avr\avr\include\avr;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ProjectDir)__vm\.FIFO Interrupts.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <PreprocessorDefinitions>__AVR_atmega2560__;__AVR_ATmega2560__;F_CPU=16000000L;ARDUINO=108012;ARDUINO_AVR_MEGA2560;ARDUINO_ARCH_AVR;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -110,11 +111,15 @@
   <ItemGroup>
     <ClInclude Include="..\..\Solutions\MaplePump\DefinedValues.h" />
     <ClInclude Include="..\..\Solutions\MaplePump\Enms.h" />
+    <ClInclude Include="Action.h" />
+    <ClInclude Include="ActionBase.h" />
     <ClInclude Include="Interrupts.h" />
     <ClInclude Include="__vm\.FIFO Interrupts.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Solutions\MaplePump\Enms.cpp" />
+    <ClCompile Include="Action.cpp" />
+    <ClCompile Include="ActionBase.cpp" />
     <ClCompile Include="Interrupts.cpp" />
   </ItemGroup>
   <PropertyGroup>
