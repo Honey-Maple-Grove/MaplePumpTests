@@ -37,3 +37,7 @@
 *.db
 *.db
 *.ipch
+*.xml
+*.buildinfo
+*.elf
+*.hex
