@@ -28,6 +28,7 @@
 #include "FIFO_AF.h"
 
 FIFO_AF myBuffer;
+char tstMessage[30];
 
 void AddToFIFO() {
     Serial.println("Pushing CB_1");
