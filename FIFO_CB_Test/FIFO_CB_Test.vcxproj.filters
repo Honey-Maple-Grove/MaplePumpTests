@@ -21,75 +21,24 @@
     <ClInclude Include="__vm\.FIFO_CB_Test.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\LiquidCrystal_I2C\1.1.2\LiquidCrystal_I2C\LiquidCrystal_I2C.h">
+    <ClInclude Include="..\..\MaplePump\Callback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\MemoryFree-master\0.0.0\MemoryFree-master\MemoryFree.h">
+    <ClInclude Include="..\..\MaplePump\InteruptBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\OneWire\2.3.5\OneWire\OneWire.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\OneWire\2.3.5\OneWire\util\OneWire_direct_gpio.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\OneWire\2.3.5\OneWire\util\OneWire_direct_regtype.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\SD.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\FatStructs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\Sd2Card.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\Sd2PinMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\SdFat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\SdFatmainpage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\SdFatUtil.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\SdInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\MaplePump\FIFO_AF.h">
+    <ClInclude Include="CallbackF1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HelloWorld\Libraries\LiquidCrystal_I2C\1.1.2\LiquidCrystal_I2C\LiquidCrystal_I2C.cpp">
+    <ClCompile Include="..\..\MaplePump\Callback.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HelloWorld\Libraries\MemoryFree-master\0.0.0\MemoryFree-master\MemoryFree.cpp">
+    <ClCompile Include="..\..\MaplePump\InteruptBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HelloWorld\Libraries\OneWire\2.3.5\OneWire\OneWire.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HelloWorld\Libraries\SD\1.2.4\SD\src\File.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HelloWorld\Libraries\SD\1.2.4\SD\src\SD.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\Sd2Card.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\SdFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\SdVolume.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\MaplePump\FIFO_AF.cpp">
+    <ClCompile Include="CallbackF1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

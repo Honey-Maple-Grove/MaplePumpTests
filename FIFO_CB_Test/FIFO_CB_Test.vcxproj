@@ -51,6 +51,7 @@
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
   <ImportGroup Label="Shared">
+    <Import Project="Libraries\CircularBuffer-master\1.3.3\CircularBuffer-master\CircularBuffer-master-1.3.3.vcxitems" Label="Shared" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -76,9 +77,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\FIFO_CB_Test;$(ProjectDir)..\..\hardware\arduino\avr\cores\arduino;$(ProjectDir)..\..\hardware\arduino\avr\variants\mega;$(ProjectDir)..\..\MaplePump;$(ProjectDir)..\..\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;$(ProjectDir)..\..\hardware\tools\avr\avr\include;$(ProjectDir)..\..\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;$(ProjectDir)..\..\hardware\tools\avr\avr\include-fixed;$(ProjectDir)..\..\hardware\tools\avr\avr\include\avr;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\FIFO_CB_Test;$(ProjectDir)Libraries\CircularBuffer-master\1.3.3\CircularBuffer-master;$(ProjectDir)..\..\hardware\arduino\avr\cores\arduino;$(ProjectDir)..\..\hardware\arduino\avr\variants\mega;$(ProjectDir)..\..\MaplePump;$(ProjectDir)..\..\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;$(ProjectDir)..\..\hardware\tools\avr\avr\include;$(ProjectDir)..\..\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;$(ProjectDir)..\..\hardware\tools\avr\avr\include-fixed;$(ProjectDir)..\..\hardware\tools\avr\avr\include\avr;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ProjectDir)__vm\.FIFO_CB_Test.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <PreprocessorDefinitions>__AVR_atmega2560__;__AVR_ATmega2560__;F_CPU=16000000L;ARDUINO=108012;ARDUINO_AVR_MEGA2560;ARDUINO_ARCH_AVR;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__AVR_atmega2560__;__AVR_ATmega2560__;F_CPU=16000000L;ARDUINO=108013;ARDUINO_AVR_MEGA2560;ARDUINO_ARCH_AVR;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -109,58 +110,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\MaplePump\FIFO_AF.h" />
-    <ClInclude Include="HelloWorld\Libraries\LiquidCrystal_I2C\1.1.2\LiquidCrystal_I2C\LiquidCrystal_I2C.h">
-      <FileType>CppCode</FileType>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\MemoryFree-master\0.0.0\MemoryFree-master\MemoryFree.h">
-      <FileType>CppCode</FileType>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\OneWire\2.3.5\OneWire\OneWire.h">
-      <FileType>CppCode</FileType>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\OneWire\2.3.5\OneWire\util\OneWire_direct_gpio.h">
-      <FileType>CppCode</FileType>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\OneWire\2.3.5\OneWire\util\OneWire_direct_regtype.h">
-      <FileType>CppCode</FileType>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\SD.h">
-      <FileType>CppCode</FileType>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\FatStructs.h">
-      <FileType>CppCode</FileType>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\Sd2Card.h">
-      <FileType>CppCode</FileType>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\Sd2PinMap.h">
-      <FileType>CppCode</FileType>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\SdFat.h">
-      <FileType>CppCode</FileType>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\SdFatmainpage.h">
-      <FileType>CppCode</FileType>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\SdFatUtil.h">
-      <FileType>CppCode</FileType>
-    </ClInclude>
-    <ClInclude Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\SdInfo.h">
-      <FileType>CppCode</FileType>
-    </ClInclude>
+    <ClInclude Include="..\..\MaplePump\Callback.h" />
+    <ClInclude Include="..\..\MaplePump\InteruptBuffer.h" />
+    <ClInclude Include="CallbackF1.h" />
     <ClInclude Include="__vm\.FIFO_CB_Test.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\MaplePump\FIFO_AF.cpp" />
-    <ClCompile Include="HelloWorld\Libraries\LiquidCrystal_I2C\1.1.2\LiquidCrystal_I2C\LiquidCrystal_I2C.cpp" />
-    <ClCompile Include="HelloWorld\Libraries\MemoryFree-master\0.0.0\MemoryFree-master\MemoryFree.cpp" />
-    <ClCompile Include="HelloWorld\Libraries\OneWire\2.3.5\OneWire\OneWire.cpp" />
-    <ClCompile Include="HelloWorld\Libraries\SD\1.2.4\SD\src\File.cpp" />
-    <ClCompile Include="HelloWorld\Libraries\SD\1.2.4\SD\src\SD.cpp" />
-    <ClCompile Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\Sd2Card.cpp" />
-    <ClCompile Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\SdFile.cpp" />
-    <ClCompile Include="HelloWorld\Libraries\SD\1.2.4\SD\src\utility\SdVolume.cpp" />
+    <ClCompile Include="..\..\MaplePump\Callback.cpp" />
+    <ClCompile Include="..\..\MaplePump\InteruptBuffer.cpp" />
+    <ClCompile Include="CallbackF1.cpp" />
   </ItemGroup>
   <PropertyGroup>
     <DebuggerFlavor>VisualMicroDebugger</DebuggerFlavor>

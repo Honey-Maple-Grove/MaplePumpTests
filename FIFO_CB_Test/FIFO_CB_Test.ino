@@ -24,17 +24,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-#include "FIFO_AF.h"
-
-FIFO_AF myBuffer;
+#include <stdio.h>
+#include "InteruptBuffer.h"
+#include "CallbackF1.h"
+typedef void (* myFunctionPointer);
 char tstMessage[30];
+function_pointer fp;
+void run(){
 
+}
 void AddToFIFO() {
-    Serial.println("Pushing CB_1");
-    myBuffer.push(CB_1);
+
+    Serial.println("Pushing F1");
+    myFunctionPointer fPointer = run;
+    InteruptBufferClass::push(fp);
     delay(100);
-    Serial.println("Pushing CB_2");
+    Serial.println("Pushing F2");
     myBuffer.push(CB_2);
     delay(100);
     Serial.println("Pushing Priority1");
