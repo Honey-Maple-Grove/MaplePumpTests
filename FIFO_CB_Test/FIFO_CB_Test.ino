@@ -37,43 +37,50 @@ void AddToFIFO() {
 
     Serial.println("Pushing F1");
     myFunctionPointer fPointer = run;
+    Serial.println(InteruptBufferClass::size());
     InteruptBufferClass::push(fp);
     delay(100);
-    Serial.println("Pushing F2");
-    myBuffer.push(CB_2);
+    Serial.println("Pushing CB_2");
+    InteruptBufferClass::push(CB_2);
     delay(100);
+    Serial.println(InteruptBufferClass::size());
     Serial.println("Pushing Priority1");
 	//Serial.print("Head=");
 	//Serial.println(myBuffer.headptr());
 	//Serial.print("Tail=");
 	//Serial.println(myBuffer.tailptr());
-    myBuffer.pushheader(Priority1);
-	Serial.print("Head=");
+    Serial.println(InteruptBufferClass::size());
+    InteruptBufferClass::pushhead(Priority1);
+	//Serial.print("Head=");
 	//Serial.println(myBuffer.headptr());
 	//Serial.print("Tail=");
 	//Serial.println(myBuffer.tailptr());
     delay(100);
+    Serial.println(InteruptBufferClass::size());
     Serial.println("Pushing Priority2");
-    myBuffer.pushheader(Priority2);
-	Serial.print("Head=");
+    InteruptBufferClass::pushhead(Priority2);
+	//Serial.print("Head=");
 	//Serial.println(myBuffer.headptr());
 	//Serial.print("Tail=");
 	//Serial.println(myBuffer.tailptr());
     delay(100);
+    Serial.println(InteruptBufferClass::size());
     Serial.println("Pushing CB_6");
-    myBuffer.push(CB_6);
-	Serial.print("Head=");
+    InteruptBufferClass::push(CB_6);
+	//Serial.print("Head=");
 	//Serial.println(myBuffer.headptr());
 	//Serial.print("Tail=");
 	//Serial.println(myBuffer.tailptr());
+    Serial.println(InteruptBufferClass::size());
     delay(100);
 }
 
 void EmptyFIFO() {
 
     //Pop items off the FIFO buffer until it's empty
-    while (myBuffer.size() > 0) {
-        myBuffer.pop()();
+    while (InteruptBufferClass::size() > 0) {
+        Serial.println(InteruptBufferClass::size());
+        InteruptBufferClass::pop()();
         delay(100);
     }
 

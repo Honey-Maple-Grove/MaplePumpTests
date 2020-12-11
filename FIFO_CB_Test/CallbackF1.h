@@ -9,13 +9,11 @@
 	#include "WProgram.h"
 #endif
 #include "Callback.h"
-function_pointer _runPointer = run;
 class CallbackF1Class : public CallbackClass
 {
  protected:
-	void actualWork();
-
-
+	function_pointer _runPointer = run;
+	 static void actualWork(); 
  public:
 	void init(long msWait);
 	static void run();

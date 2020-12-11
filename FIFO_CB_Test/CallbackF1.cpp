@@ -16,7 +16,7 @@ function_pointer CallbackF1Class::runPointer(){
 void CallbackF1Class::run(){
 	if(CallbackClass::okToRun()){
 		CallbackClass::popBuffer();
-		actualWork();
+		CallbackF1Class::actualWork();
 	}
 }
 void CallbackF1Class::actualWork(){
