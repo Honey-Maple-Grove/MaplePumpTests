@@ -30,6 +30,9 @@
     <ClInclude Include="CallbackF1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Interrupts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\MaplePump\Callback.cpp">
@@ -39,6 +42,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CallbackF1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Interrupts.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

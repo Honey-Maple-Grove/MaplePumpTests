@@ -12,12 +12,11 @@
 class CallbackF1Class : public CallbackClass
 {
  protected:
-	function_pointer _runPointer = run;
-	 static void actualWork(); 
+	virtual void actualWork(); 
  public:
 	void init(long msWait);
-	static void run();
 	function_pointer runPointer();
+	void run();
 };
 
 extern CallbackF1Class CallbackF1;
