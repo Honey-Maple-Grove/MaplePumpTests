@@ -28,50 +28,38 @@
 #include <stdio.h>
 #include "InteruptBuffer.h"
 #include "CallbackF1.h"
-typedef void (* myFunctionPointer);
+#include "Enms.h"
 char tstMessage[30];
-function_pointer fp;
 void run(){
 
 }
 void AddToFIFO() {
-
-    Serial.println("Pushing F1");
-    myFunctionPointer fPointer = run;
-    Serial.println(InteruptBufferClass::size());
-    InteruptBufferClass::push(fp);
+    String forPrint;
+    Serial.println();
+    forPrint = "Push " + EnumsClass::EnumStr(EnumsClass::CheckInTemp);
+    Serial.println(forPrint);
+    InterruptsClass::push(EnumsClass::CheckInTemp);
     delay(100);
-    Serial.println("Pushing CB_2");
-    InteruptBufferClass::push(CB_2);
-    delay(100);
-    Serial.println(InteruptBufferClass::size());
-    Serial.println("Pushing Priority1");
-	//Serial.print("Head=");
-	//Serial.println(myBuffer.headptr());
-	//Serial.print("Tail=");
-	//Serial.println(myBuffer.tailptr());
-    Serial.println(InteruptBufferClass::size());
-    InteruptBufferClass::pushhead(Priority1);
-	//Serial.print("Head=");
-	//Serial.println(myBuffer.headptr());
-	//Serial.print("Tail=");
-	//Serial.println(myBuffer.tailptr());
+    forPrint = "Push " + EnumsClass::EnumStr(EnumsClass::CheckMinSensors);
+    Serial.println(forPrint);
+    InterruptsClass::push(EnumsClass::CheckMinSensors);
     delay(100);
     Serial.println(InteruptBufferClass::size());
-    Serial.println("Pushing Priority2");
-    InteruptBufferClass::pushhead(Priority2);
-	//Serial.print("Head=");
-	//Serial.println(myBuffer.headptr());
-	//Serial.print("Tail=");
-	//Serial.println(myBuffer.tailptr());
+    
+    forPrint = "Priority " + EnumsClass::EnumStr(EnumsClass::CheckSapLines);
+    Serial.println(forPrint);
+    InterruptsClass::priorty(EnumsClass::CheckSapLines);
+    Serial.println(InteruptBufferClass::size());
+    delay(100);
+    forPrint = "Priority " + EnumsClass::EnumStr(EnumsClass::Void);
+    Serial.println(forPrint);
+    InterruptsClass::priorty(EnumsClass::Void);
+    Serial.println(InteruptBufferClass::size());
     delay(100);
     Serial.println(InteruptBufferClass::size());
-    Serial.println("Pushing CB_6");
-    InteruptBufferClass::push(CB_6);
-	//Serial.print("Head=");
-	//Serial.println(myBuffer.headptr());
-	//Serial.print("Tail=");
-	//Serial.println(myBuffer.tailptr());
+    forPrint = "Push " + EnumsClass::EnumStr(EnumsClass::CheckSapFloat);
+    Serial.println(forPrint);
+    InterruptsClass::push(EnumsClass::CheckSapFloat);
     Serial.println(InteruptBufferClass::size());
     delay(100);
 }
@@ -81,7 +69,7 @@ void EmptyFIFO() {
     //Pop items off the FIFO buffer until it's empty
     while (InteruptBufferClass::size() > 0) {
         Serial.println(InteruptBufferClass::size());
-        InteruptBufferClass::pop()();
+        InterruptsClass::runFunction();
         delay(100);
     }
 

@@ -14,8 +14,8 @@ class CallbackF1Class : public CallbackClass
  protected:
 	virtual void actualWork(); 
  public:
-	void init(long msWait);
-	function_pointer runPointer();
+	void init(long msWait, EnumsClass::Interrupt thisInterrupt);
+	
 	void run();
 };
 

@@ -9,13 +9,22 @@
 	#include "WProgram.h"
 #endif
 #include "CallbackF1.h"
+#include "InteruptBuffer.h"
 class InterruptsClass
 {
  protected:
-
+	CallbackF1Class f1;
+	CallbackF1Class f2;
+	CallbackF1Class f3;
+	CallbackF1Class f4;
+	CallbackF1Class f5;
 
  public:
-	void init();
+	static void init();
+	static char* runFunction(EnumsClass::Interrupt);
+	static void push(EnumsClass::Interrupt);
+	static void priorty(EnumsClass::Interrupt);
+
 };
 
 extern InterruptsClass Interrupts;
