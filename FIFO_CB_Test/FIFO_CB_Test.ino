@@ -24,10 +24,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "Interrupts.h"
+#include "Interuptor.h"
+#include "Interupts.h"
 #include <stdio.h>
-#include "InteruptBuffer.h"
 #include "CallbackF1.h"
+#include "DefinedValues.h"
 #include "Enms.h"
 char tstMessage[30];
 void run(){
@@ -38,38 +39,39 @@ void AddToFIFO() {
     Serial.println();
     forPrint = "Push " + EnumsClass::EnumStr(EnumsClass::CheckInTemp);
     Serial.println(forPrint);
-    InterruptsClass::push(EnumsClass::CheckInTemp);
+    InteruptorClass I1; I1.init(CB_1, Mills_Sec,0,EnumsClass::CheckInTemp);
+    InteruptsClass::push(I1);
     delay(100);
     forPrint = "Push " + EnumsClass::EnumStr(EnumsClass::CheckMinSensors);
     Serial.println(forPrint);
-    InterruptsClass::push(EnumsClass::CheckMinSensors);
+    InteruptsClass::push(EnumsClass::CheckMinSensors);
     delay(100);
-    Serial.println(InteruptBufferClass::size());
+    Serial.println(InteruptsClass::interuptCount());
     
     forPrint = "Priority " + EnumsClass::EnumStr(EnumsClass::CheckSapLines);
     Serial.println(forPrint);
-    InterruptsClass::priorty(EnumsClass::CheckSapLines);
-    Serial.println(InteruptBufferClass::size());
+    InteruptsClass::priorty(EnumsClass::CheckSapLines);
+    Serial.println(InteruptsClass::interuptCount());
     delay(100);
     forPrint = "Priority " + EnumsClass::EnumStr(EnumsClass::Void);
     Serial.println(forPrint);
-    InterruptsClass::priorty(EnumsClass::Void);
-    Serial.println(InteruptBufferClass::size());
+    InteruptsClass::priorty(EnumsClass::Void);
+    Serial.println(InteruptsClass::interuptCount());
     delay(100);
-    Serial.println(InteruptBufferClass::size());
+    Serial.println(InteruptsClass::interuptCount());
     forPrint = "Push " + EnumsClass::EnumStr(EnumsClass::CheckSapFloat);
     Serial.println(forPrint);
-    InterruptsClass::push(EnumsClass::CheckSapFloat);
-    Serial.println(InteruptBufferClass::size());
+    InteruptsClass::push(EnumsClass::CheckSapFloat);
+    Serial.println(InteruptsClass::interuptCount());
     delay(100);
 }
 
 void EmptyFIFO() {
 
     //Pop items off the FIFO buffer until it's empty
-    while (InteruptBufferClass::size() > 0) {
+    while (InteruptsClass::hasInterupts()) {
         Serial.println(InteruptBufferClass::size());
-        InterruptsClass::runFunction();
+        //Serial.println(InteruptsClass::);
         delay(100);
     }
 
@@ -77,6 +79,10 @@ void EmptyFIFO() {
 }
 void loop() {
  
+}
+
+char* charString(){
+return PROMPT_TEMP;
 }
 
 void CB_1() {

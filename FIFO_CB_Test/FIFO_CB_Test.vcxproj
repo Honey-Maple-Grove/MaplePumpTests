@@ -110,20 +110,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\MaplePump\Callback.h" />
     <ClInclude Include="..\..\MaplePump\DefinedValues.h" />
     <ClInclude Include="..\..\MaplePump\Enms.h" />
+    <ClInclude Include="..\..\MaplePump\Interrupts.h" />
     <ClInclude Include="..\..\MaplePump\InteruptBuffer.h" />
-    <ClInclude Include="CallbackF1.h" />
-    <ClInclude Include="Interrupts.h" />
+    <ClInclude Include="..\..\MaplePump\InteruptInfo.h" />
+    <ClInclude Include="..\..\MaplePump\Interuptor.h" />
     <ClInclude Include="__vm\.FIFO_CB_Test.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\MaplePump\Callback.cpp" />
     <ClCompile Include="..\..\MaplePump\Enms.cpp" />
     <ClCompile Include="..\..\MaplePump\InteruptBuffer.cpp" />
-    <ClCompile Include="CallbackF1.cpp" />
-    <ClCompile Include="Interrupts.cpp" />
+    <ClCompile Include="..\..\MaplePump\Interuptor.cpp" />
+    <ClCompile Include="..\..\MaplePump\Interupts.cpp" />
   </ItemGroup>
   <PropertyGroup>
     <DebuggerFlavor>VisualMicroDebugger</DebuggerFlavor>
