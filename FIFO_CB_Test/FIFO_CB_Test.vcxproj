@@ -50,9 +50,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Label="Shared">
-    <Import Project="Libraries\CircularBuffer-master\1.3.3\CircularBuffer-master\CircularBuffer-master-1.3.3.vcxitems" Label="Shared" />
-  </ImportGroup>
+  <ImportGroup Label="Shared" />
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -77,9 +75,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\FIFO_CB_Test;$(ProjectDir)Libraries\CircularBuffer-master\1.3.3\CircularBuffer-master;$(ProjectDir)..\..\hardware\arduino\avr\cores\arduino;$(ProjectDir)..\..\hardware\arduino\avr\variants\mega;$(ProjectDir)..\..\MaplePump;$(ProjectDir)..\..\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;$(ProjectDir)..\..\hardware\tools\avr\avr\include;$(ProjectDir)..\..\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;$(ProjectDir)..\..\hardware\tools\avr\avr\include-fixed;$(ProjectDir)..\..\hardware\tools\avr\avr\include\avr;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\FIFO_CB_Test;$(ProjectDir)..\..\libraries\CircularBuffer-master;$(ProjectDir)..\..\hardware\arduino\avr\cores\arduino;$(ProjectDir)..\..\hardware\arduino\avr\variants\mega;$(ProjectDir)..\..\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;$(ProjectDir)..\..\hardware\tools\avr\avr\include;$(ProjectDir)..\..\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;$(ProjectDir)..\..\hardware\tools\avr\avr\include-fixed;$(ProjectDir)..\..\hardware\tools\avr\avr\include\avr;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\hardware\tools\avr\lib\gcc\avr\4.9.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ProjectDir)__vm\.FIFO_CB_Test.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <PreprocessorDefinitions>__AVR_atmega2560__;__AVR_ATmega2560__;F_CPU=16000000L;ARDUINO=108013;ARDUINO_AVR_MEGA2560;ARDUINO_ARCH_AVR;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__AVR_atmega2560__;__AVR_ATmega2560__;F_CPU=16000000L;ARDUINO=108012;ARDUINO_AVR_MEGA2560;ARDUINO_ARCH_AVR;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -110,19 +108,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\MaplePump\DefinedValues.h" />
-    <ClInclude Include="..\..\MaplePump\Enms.h" />
-    <ClInclude Include="..\..\MaplePump\Interrupts.h" />
-    <ClInclude Include="..\..\MaplePump\InteruptBuffer.h" />
-    <ClInclude Include="..\..\MaplePump\InteruptInfo.h" />
-    <ClInclude Include="..\..\MaplePump\Interuptor.h" />
+    <ClInclude Include="DefinedValues.h" />
+    <ClInclude Include="Enms.h" />
+    <ClInclude Include="Interupt.h" />
+    <ClInclude Include="InteruptBuffer.h" />
+    <ClInclude Include="Interuptor.h" />
     <ClInclude Include="__vm\.FIFO_CB_Test.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\MaplePump\Enms.cpp" />
-    <ClCompile Include="..\..\MaplePump\InteruptBuffer.cpp" />
-    <ClCompile Include="..\..\MaplePump\Interuptor.cpp" />
-    <ClCompile Include="..\..\MaplePump\Interupts.cpp" />
+    <ClCompile Include="Enms.cpp" />
+    <ClCompile Include="Interupt.cpp" />
+    <ClCompile Include="InteruptBuffer.cpp" />
+    <ClCompile Include="Interuptor.cpp" />
   </ItemGroup>
   <PropertyGroup>
     <DebuggerFlavor>VisualMicroDebugger</DebuggerFlavor>

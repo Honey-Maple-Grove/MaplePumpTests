@@ -21,36 +21,33 @@
     <ClInclude Include="__vm\.FIFO_CB_Test.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MaplePump\InteruptBuffer.h">
+    <ClInclude Include="DefinedValues.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MaplePump\Enms.h">
+    <ClInclude Include="Enms.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MaplePump\DefinedValues.h">
+    <ClInclude Include="Interupt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MaplePump\Interrupts.h">
+    <ClInclude Include="InteruptBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MaplePump\InteruptInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\MaplePump\Interuptor.h">
+    <ClInclude Include="Interuptor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\MaplePump\InteruptBuffer.cpp">
+    <ClCompile Include="Enms.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MaplePump\Enms.cpp">
+    <ClCompile Include="Interupt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MaplePump\Interupts.cpp">
+    <ClCompile Include="InteruptBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MaplePump\Interuptor.cpp">
+    <ClCompile Include="Interuptor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
