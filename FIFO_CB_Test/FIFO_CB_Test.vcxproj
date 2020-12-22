@@ -109,14 +109,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DefinedValues.h" />
-    <ClInclude Include="Enms.h" />
+    <ClInclude Include="Enums.h" />
     <ClInclude Include="Interupt.h" />
     <ClInclude Include="InteruptBuffer.h" />
     <ClInclude Include="Interuptor.h" />
     <ClInclude Include="__vm\.FIFO_CB_Test.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Enms.cpp" />
+    <ClCompile Include="Enums.cpp" />
     <ClCompile Include="Interupt.cpp" />
     <ClCompile Include="InteruptBuffer.cpp" />
     <ClCompile Include="Interuptor.cpp" />

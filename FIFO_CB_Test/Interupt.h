@@ -9,15 +9,14 @@
 	#include "WProgram.h"
 #endif
 #include "Enms.h"
-#include "InteruptBuffer.h"
+#include <CircularBuffer.h>
 
 class InteruptClass
 {
 private:
+	static  CircularBuffer<InteruptorClass, BufferSize> cBuffer;
 public:
 	static void init ();
-	static bool push(InteruptorClass interuptor);
-	static bool priority(InteruptorClass interuptor);
 	static int interuptCount();
 	static bool hasInterupts();
 	static InteruptorClass runNextInterupt();
