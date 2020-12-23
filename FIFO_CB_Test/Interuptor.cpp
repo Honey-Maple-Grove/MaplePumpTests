@@ -4,7 +4,7 @@
 
 #include "Interuptor.h"
 
-void InteruptorClass::init(void (*fPointer)(),
+void InteruptorClass::init(void (*fPointer)(InteruptorClass interupt),
 		long cycle,
 		int repeats,
 		EnumsClass::Interupt interupt)
@@ -36,6 +36,10 @@ void InteruptorClass::init(void (*fPointer)(),
 	} 
 	void InteruptorClass::runInterupt(){
 		_fPointer;
+	}
+
+	void InteruptorClass::deleteMe(){
+		delete this;
 	}
 InteruptorClass Interuptor;
 

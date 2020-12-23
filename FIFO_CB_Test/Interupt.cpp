@@ -45,30 +45,43 @@ void InteruptClass::init() {
 	InteruptBufferClass::init();
 }
 
+void destroyClass(InteruptorClass interupt){
+
+}
 bool InteruptClass::push(InteruptorClass interuptor){
-	InteruptBufferClass::push(interuptor);
+	InteruptClass::cBuffer.push(interuptor);
+}
+
+InteruptorClass InteruptClass::peek(){
+		return InteruptClass::cBuffer.first();
+}
+
+InteruptorClass InteruptClass::pop(){
+		return InteruptClass::cBuffer.pop();
 }
 
 int InteruptClass::interuptCount(){
-		return InteruptBufferClass::size();	
+		return InteruptClass::cBuffer.size();
 }
 
 bool InteruptClass::priority(InteruptorClass interuptor){
-	InteruptBufferClass::pushhead(interuptor);
+	InteruptClass::cBuffer.unshift(interuptor);
 }
 
 bool InteruptClass::hasInterupts(){
-	int interruptCount = InteruptBufferClass::size();
-	return (interruptCount > 0);
+	return !InteruptClass::cBuffer.isEmpty();
 }
 
+// Aside from init, this is the only function called - not invoked by an interupt
+// It is called in loop. If the function is deletred, the Interuptor must be destroyed
 InteruptorClass InteruptClass::runNextInterupt()
 {
 	InteruptorClass interuptor  = InteruptBufferClass::peek();
 	if(interuptor.canRunFunction()){
 		interuptor.runInterupt();
 		if(interuptor.canInteruptInfoBeDeleted()){
-			InteruptBufferClass::pop();
+			InteruptClass::pop();
+			interuptor.deleteMe();
 		}
 	}
 	else 

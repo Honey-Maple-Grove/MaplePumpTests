@@ -9,14 +9,15 @@
 	#include "WProgram.h"
 #endif
 #include "Enums.h"
-typedef void (*fPointer)();
+#include "Interuptor.h"
+typedef void (*fPointer)(InteruptorClass interupt);
 class InteruptorClass
 {
  protected:
 
 
  public:
-	void init(void (*fPointer)(),
+	void init(void (*fPointer)(InteruptorClass interupt),
 		long cycle,
 		int repeats,
 		EnumsClass::Interupt interupt);
@@ -24,6 +25,7 @@ class InteruptorClass
 	bool canInteruptInfoBeDeleted();
 	EnumsClass::Interupt Interupt();
 	void runInterupt();
+	void deleteMe();
 private:
 	
 	EnumsClass::Interupt _interupt;

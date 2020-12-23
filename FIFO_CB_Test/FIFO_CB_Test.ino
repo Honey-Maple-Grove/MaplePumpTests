@@ -27,7 +27,7 @@
 #include <CircularBuffer.h>
 #include <stdio.h>
 #include "DefinedValues.h"
-#include "Ennms.h"
+#include "Enums.h"
 #include "InteruptBuffer.h"
 #include "Interuptor.h"
 #include "Interupt.h"
