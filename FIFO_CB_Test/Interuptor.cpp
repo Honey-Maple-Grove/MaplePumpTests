@@ -11,7 +11,7 @@ void InteruptorClass::init(void (*fPointer)(InteruptorClass interupt),
 	int repeats)
 {
 		_fPointer = fPointer;
-		_pushP = pushPriority;
+		_pushPriority = pushPriority;
 		_fName = fName;
 		_cycle = cycle;
 		_repeats = repeats;

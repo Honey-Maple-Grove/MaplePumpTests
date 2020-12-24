@@ -9,7 +9,6 @@
 	#include "WProgram.h"
 #endif
 #include "Enums.h"
-#include "Interuptor.h"
 class InteruptorClass
 {
 typedef void (*fPointer)(InteruptorClass interupt);
