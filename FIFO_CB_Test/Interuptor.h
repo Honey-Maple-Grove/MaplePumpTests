@@ -10,25 +10,26 @@
 #endif
 #include "Enums.h"
 #include "Interuptor.h"
-typedef void (*fPointer)(InteruptorClass interupt);
 class InteruptorClass
 {
+typedef void (*fPointer)(InteruptorClass interupt);
  protected:
 
-
  public:
-	void init(void (*fPointer)(InteruptorClass interupt),
-		long cycle,
-		int repeats,
-		EnumsClass::Interupt interupt);
+	 void init(void (*fPointer)(InteruptorClass interupt),
+		 EnumsClass::Interupt pushPriority,
+		 EnumsClass::Interupt fName,
+		 long cycle,
+		 int repeats);
 	bool canRunFunction();
 	bool canInteruptInfoBeDeleted();
 	EnumsClass::Interupt Interupt();
 	void runInterupt();
 	void deleteMe();
+	void printlnMe();
 private:
-	
-	EnumsClass::Interupt _interupt;
+	EnumsClass::Interupt _fName;
+	EnumsClass::Interupt _pushPriority;
 	long _lastMillis;
 	long _cycle;
 	int _repeats ;

@@ -5,14 +5,16 @@
 #include "Interuptor.h"
 
 void InteruptorClass::init(void (*fPointer)(InteruptorClass interupt),
-		long cycle,
-		int repeats,
-		EnumsClass::Interupt interupt)
+	EnumsClass::Interupt pushPriority,
+	EnumsClass::Interupt fName,
+	long cycle,
+	int repeats)
 {
 		_fPointer = fPointer;
+		_pushP = pushPriority;
+		_fName = fName;
 		_cycle = cycle;
 		_repeats = repeats;
-		_interupt = interupt;
 }
 
 	bool InteruptorClass::canRunFunction() {
@@ -26,6 +28,13 @@ void InteruptorClass::init(void (*fPointer)(InteruptorClass interupt),
 		return false;}
 	}
 
+	void InteruptorClass::printlnMe() {
+		String aboutMe = EnumsClass::EnumStr(_pushPriority) + "-"
+			+ EnumsClass::EnumStr(_fName) + "-"
+			+ _cycle + "/"
+			+ _repeats;
+		Serial.println(aboutMe);
+	}
 	
 	bool InteruptorClass::canInteruptInfoBeDeleted(){
 		return _repeatCount <= _repeats;

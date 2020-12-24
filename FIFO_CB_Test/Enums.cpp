@@ -132,5 +132,11 @@ String EnumsClass::EnumStr(EnumsClass::Interupt interupt) {
 	case EnumsClass::Void:
 		return "Void";
 		break;
+	case EnumsClass::Push:
+		return "Push - ";
+		break;
+	case EnumsClass::Priority:
+		return "Priority - ";
+		break;
 	}
 }

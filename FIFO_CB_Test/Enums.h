@@ -64,6 +64,8 @@ class EnumsClass
 		CheckSapFloat,
 		CheckSapLines,
 		Void,
+		Push,
+		Priority,
 	 };
 
 	 static String EnumStr(Action action);

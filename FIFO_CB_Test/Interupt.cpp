@@ -42,7 +42,7 @@ Each rep:
 
 void InteruptClass::init() {
 	Serial.print("enter Interrupt");
-	InteruptBufferClass::init();
+	InteruptClass::BuildStaticTest();
 }
 
 void destroyClass(InteruptorClass interupt){
@@ -76,7 +76,7 @@ bool InteruptClass::hasInterupts(){
 // It is called in loop. If the function is deletred, the Interuptor must be destroyed
 InteruptorClass InteruptClass::runNextInterupt()
 {
-	InteruptorClass interuptor  = InteruptBufferClass::peek();
+	InteruptorClass interuptor  = InteruptClass::peek();
 	if(interuptor.canRunFunction()){
 		interuptor.runInterupt();
 		if(interuptor.canInteruptInfoBeDeleted()){
@@ -90,6 +90,40 @@ InteruptorClass InteruptClass::runNextInterupt()
 	}
 }
 
+// Test Stufff{
+void InteruptClass::RunStaticTest() {
+	Serial.println("Consuming test fifo queue");
+	while (InteruptClass::hasInterupts()) {
+		InteruptClass::runNextInterupt();
+	}
+}
+
+void testFunction(InteruptorClass interupt) {
+	interupt.printlnMe();
+}
+
+void InteruptClass::BuildStaticTest() {
+	int order = 0;
+	Serial.println("Building test fifo queue");
+	InteruptorClass inter; 
+	inter.init(testFunction, EnumsClass::Push,EnumsClass::CheckInTemp, ++order,2);
+	InteruptClass::push(inter);
+	inter.printlnMe();
+	inter.init(testFunction, EnumsClass::Push,EnumsClass::CheckMinSensors, ++order,3);
+	InteruptClass::push(inter);
+	inter.printlnMe();
+	inter.init(testFunction, EnumsClass::Push,EnumsClass::CheckSapLines, ++order,4);
+	InteruptClass::push(inter);
+	inter.printlnMe();
+	inter.init(testFunction, EnumsClass::Priority,EnumsClass::CheckSapFloat, ++order,1);
+	InteruptClass::push(inter);
+	inter.printlnMe();
+	inter.init(testFunction, EnumsClass::Push,EnumsClass::Void, ++order,5);
+	InteruptClass::push(inter);
+	inter.printlnMe();
+	Serial.print("Buffer Count - ");
+	Serial.println(cBuffer.size()); 
+}
 
 InteruptClass Interrupt;
 

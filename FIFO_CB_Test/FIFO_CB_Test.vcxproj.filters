@@ -27,9 +27,6 @@
     <ClInclude Include="Interupt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InteruptBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Interuptor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -39,9 +36,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Interupt.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InteruptBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Interuptor.cpp">

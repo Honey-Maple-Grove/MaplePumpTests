@@ -38,36 +38,36 @@ void run(){
 void AddToFIFO() {
     String forPrint;
     Serial.println();
-    forPrint = "Push " + EnumsClass::EnumStr(EnumsClass::CheckInTemp);
-    Serial.println(forPrint);
-    InteruptorClass I1; I1.init(CB_1, Mills_Sec,0,EnumsClass::CheckInTemp);
-    InteruptClass::push(I1);
-    delay(100);
-    forPrint = "Push " + EnumsClass::EnumStr(EnumsClass::CheckMinSensors);
-    Serial.println(forPrint);
-    InteruptorClass I2; I2.init(CB_2, Mills_Sec,0,EnumsClass::CheckMinSensors);
-    InteruptClass::push(I2);
-    delay(100);
-    Serial.println(InteruptClass::interuptCount());
-    
-    forPrint = "Priority1 " + EnumsClass::EnumStr(EnumsClass::CheckSapLines);
-    Serial.println(forPrint);
-    InteruptorClass P1; P1.init(Priority1, Mills_Sec,0,EnumsClass::CheckMinSensors);
-    InteruptClass::push(P1);
-    Serial.println(InteruptClass::interuptCount());
-    delay(100);
-    forPrint = "Priority2 " + EnumsClass::EnumStr(EnumsClass::Void);
-    Serial.println(forPrint);
-    InteruptorClass P2; P2.init(Priority2, Mills_Sec,0,EnumsClass::CheckMinSensors);
-    InteruptClass::push(P2);
-    Serial.println(InteruptClass::interuptCount());
-    delay(100);
-    Serial.println(InteruptClass::interuptCount());
-    forPrint = "Push " + EnumsClass::EnumStr(EnumsClass::CheckSapFloat);
-    Serial.println(forPrint);
-    InteruptorClass I3; I3.init(CB_3, Mills_Sec,0,EnumsClass::CheckSapFloat);
-    InteruptClass::push(I3);
-    Serial.println(InteruptClass::interuptCount());
+    ///*forPrint = "Push " + EnumsClass::EnumStr(EnumsClass::CheckInTemp);
+    //Serial.println(forPrint);
+    //InteruptorClass I1; I1.init(CB_1, Mills_Sec,0,EnumsClass::CheckInTemp);
+    //InteruptClass::push(I1);
+    //delay(100);
+    //forPrint = "Push " + EnumsClass::EnumStr(EnumsClass::CheckMinSensors);
+    //Serial.println(forPrint);
+    //InteruptorClass I2; I2.init(CB_2, Mills_Sec,0,EnumsClass::CheckMinSensors);
+    //InteruptClass::push(I2);
+    //delay(100);
+    //Serial.println(InteruptClass::interuptCount());
+    //
+    //forPrint = "Priority1 " + EnumsClass::EnumStr(EnumsClass::CheckSapLines);
+    //Serial.println(forPrint);
+    //InteruptorClass P1; P1.init(Priority1, Mills_Sec,0,EnumsClass::CheckMinSensors);
+    //InteruptClass::push(P1);
+    //Serial.println(InteruptClass::interuptCount());
+    //delay(100);
+    //forPrint = "Priority2 " + EnumsClass::EnumStr(EnumsClass::Void);
+    //Serial.println(forPrint);
+    //InteruptorClass P2; P2.init(Priority2, Mills_Sec,0,EnumsClass::CheckMinSensors);
+    //InteruptClass::push(P2);
+    //Serial.println(InteruptClass::interuptCount());
+    //delay(100);
+    //Serial.println(InteruptClass::interuptCount());
+    //forPrint = "Push " + EnumsClass::EnumStr(EnumsClass::CheckSapFloat);
+    //Serial.println(forPrint);
+    //InteruptorClass I3; I3.init(CB_3, Mills_Sec,0,EnumsClass::CheckSapFloat);
+    //InteruptClass::push(I3);
+    //Serial.println(InteruptClass::interuptCount());*/
     delay(100);
 }
 
@@ -99,28 +99,6 @@ char* charString(){
 return PROMPT_TEMP;
 }
 
-void CB_1() {
-    Serial.println("CB1 called");
-}
-
-void CB_2() {
-    Serial.println("CB2 called");
-}
-
-void CB_3() {
-    Serial.println("CB3 called");
-}
-void Priority1() {
-    Serial.println("Priority1 called");
-}
-
-void Priority2() {
-    Serial.println("Priority2 called");
-}
-
-void CB_6() {
-    Serial.println("CB6 called");
-}
 void setup() {
   //Open serial port at 115200 baud
   Serial.begin(115200);

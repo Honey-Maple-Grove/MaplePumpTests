@@ -14,12 +14,26 @@
 
 class InteruptClass
 {
+	static const int _bufferSize = 20;
+protected:
+
+	typedef void (*fPointer)(InteruptorClass interupt);
 private:
-	static CircularBuffer<InteruptorClass, BufferSize> cBuffer;
+	static CircularBuffer<InteruptorClass, _bufferSize> cBuffer;
 	static bool push(InteruptorClass interupt);
 	static bool priority(InteruptorClass interupt);
 	static InteruptorClass peek();
 	static InteruptorClass pop();
+	static void BuildStaticTest();
+	static void RunStaticTest();
+	
+
+// Test stuff
+
+	static void TestCall(InteruptorClass interupt) {
+		Serial.println("CB1 called");
+	}
+
 
 public:
 	static void init ();
