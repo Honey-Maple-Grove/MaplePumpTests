@@ -24,8 +24,6 @@ private:
 	static bool priority(InteruptorClass interupt);
 	static InteruptorClass peek();
 	static InteruptorClass pop();
-	static void BuildStaticTest();
-	static void RunStaticTest();
 	
 
 // Test stuff
@@ -40,7 +38,8 @@ public:
 	static int interuptCount();
 	static bool hasInterupts();
 	static InteruptorClass runNextInterupt();
-	//static void setupTest();
+	static void BuildStaticTest();
+	static void RunStaticTest();
 };
 
 extern InteruptClass Interupt;

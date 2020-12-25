@@ -24,70 +24,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include <CircularBuffer.h>
 #include <stdio.h>
-#include "DefinedValues.h"
-#include "Enums.h"
-#include "InteruptBuffer.h"
-#include "Interuptor.h"
 #include "Interupt.h"
-char tstMessage[30];
-void run(){
-
+void run() {
+    if (InteruptClass::hasInterupts){
+        InteruptClass::runNextInterupt();
+        }
 }
-void AddToFIFO() {
-    String forPrint;
-    Serial.println();
-    ///*forPrint = "Push " + EnumsClass::EnumStr(EnumsClass::CheckInTemp);
-    //Serial.println(forPrint);
-    //InteruptorClass I1; I1.init(CB_1, Mills_Sec,0,EnumsClass::CheckInTemp);
-    //InteruptClass::push(I1);
-    //delay(100);
-    //forPrint = "Push " + EnumsClass::EnumStr(EnumsClass::CheckMinSensors);
-    //Serial.println(forPrint);
-    //InteruptorClass I2; I2.init(CB_2, Mills_Sec,0,EnumsClass::CheckMinSensors);
-    //InteruptClass::push(I2);
-    //delay(100);
-    //Serial.println(InteruptClass::interuptCount());
-    //
-    //forPrint = "Priority1 " + EnumsClass::EnumStr(EnumsClass::CheckSapLines);
-    //Serial.println(forPrint);
-    //InteruptorClass P1; P1.init(Priority1, Mills_Sec,0,EnumsClass::CheckMinSensors);
-    //InteruptClass::push(P1);
-    //Serial.println(InteruptClass::interuptCount());
-    //delay(100);
-    //forPrint = "Priority2 " + EnumsClass::EnumStr(EnumsClass::Void);
-    //Serial.println(forPrint);
-    //InteruptorClass P2; P2.init(Priority2, Mills_Sec,0,EnumsClass::CheckMinSensors);
-    //InteruptClass::push(P2);
-    //Serial.println(InteruptClass::interuptCount());
-    //delay(100);
-    //Serial.println(InteruptClass::interuptCount());
-    //forPrint = "Push " + EnumsClass::EnumStr(EnumsClass::CheckSapFloat);
-    //Serial.println(forPrint);
-    //InteruptorClass I3; I3.init(CB_3, Mills_Sec,0,EnumsClass::CheckSapFloat);
-    //InteruptClass::push(I3);
-    //Serial.println(InteruptClass::interuptCount());*/
-    delay(100);
-}
-
-void EmptyFIFO() {
-
-    //Pop items off the FIFO buffer until it's empty
-    while (InteruptClass::hasInterupts()) {
-        Serial.println(InteruptBufferClass::size());
-        InteruptorClass iC = InteruptBufferClass::pop();
-        String msg = EnumsClass::EnumStr(iC.Interupt());
-        Serial.println(msg);
-        iC.runInterupt();
-        delay(100);
-    }
-
-    while (1);
-}
+   
 
 void ResetFIFO() {
-    InteruptBufferClass::init();
+    InteruptClass::init();
 }
 
 
@@ -95,9 +42,6 @@ void loop() {
  
 }
 
-char* charString(){
-return PROMPT_TEMP;
-}
 
 void setup() {
   //Open serial port at 115200 baud
@@ -108,7 +52,6 @@ void setup() {
   Serial.println("Test Started");
   //Wait a little bit to make sure we don't get any garbage on the serial monitor
   delay(100);
-
-  AddToFIFO();
-  EmptyFIFO();
+  InteruptClass::BuildStaticTest();
+  InteruptClass::RunStaticTest();
 }

@@ -41,13 +41,8 @@ Each rep:
 */
 
 void InteruptClass::init() {
-	Serial.print("enter Interrupt");
-	InteruptClass::BuildStaticTest();
 }
 
-void destroyClass(InteruptorClass interupt){
-
-}
 bool InteruptClass::push(InteruptorClass interuptor){
 	InteruptClass::cBuffer.push(interuptor);
 }
@@ -79,6 +74,7 @@ InteruptorClass InteruptClass::runNextInterupt()
 	InteruptorClass interuptor  = InteruptClass::peek();
 	if(interuptor.canRunFunction()){
 		interuptor.runInterupt();
+		interuptor.InteruptCount(InteruptClass::cBuffer.size());
 		if(interuptor.canInteruptInfoBeDeleted()){
 			InteruptClass::pop();
 			interuptor.deleteMe();
@@ -106,19 +102,19 @@ void InteruptClass::BuildStaticTest() {
 	int order = 0;
 	Serial.println("Building test fifo queue");
 	InteruptorClass inter; 
-	inter.init(testFunction, EnumsClass::Push,EnumsClass::CheckInTemp, ++order,2);
+	inter.init(testFunction, EnumsClass::Push,EnumsClass::CheckInTemp, ++order,2, InteruptClass::cBuffer.size());
 	InteruptClass::push(inter);
 	inter.printlnMe();
-	inter.init(testFunction, EnumsClass::Push,EnumsClass::CheckMinSensors, ++order,3);
+	inter.init(testFunction, EnumsClass::Push,EnumsClass::CheckMinSensors, ++order,3, InteruptClass::cBuffer.size());
 	InteruptClass::push(inter);
 	inter.printlnMe();
-	inter.init(testFunction, EnumsClass::Push,EnumsClass::CheckSapLines, ++order,4);
+	inter.init(testFunction, EnumsClass::Push,EnumsClass::CheckSapLines, ++order,4, InteruptClass::cBuffer.size());
 	InteruptClass::push(inter);
 	inter.printlnMe();
-	inter.init(testFunction, EnumsClass::Priority,EnumsClass::CheckSapFloat, ++order,1);
+	inter.init(testFunction, EnumsClass::Priority,EnumsClass::CheckSapFloat, ++order,1, InteruptClass::cBuffer.size());
 	InteruptClass::push(inter);
 	inter.printlnMe();
-	inter.init(testFunction, EnumsClass::Push,EnumsClass::Void, ++order,5);
+	inter.init(testFunction, EnumsClass::Push,EnumsClass::Void, ++order,5, InteruptClass::cBuffer.size());
 	InteruptClass::push(inter);
 	inter.printlnMe();
 	Serial.print("Buffer Count - ");
