@@ -40,44 +40,46 @@ Each rep:
 		return
 */
 
+static const int _bufferSize = 20;
+static CircularBuffer<InteruptorClass*, _bufferSize> cBuffer;
 void InteruptClass::init() {
 }
 
-bool InteruptClass::push(InteruptorClass interuptor){
-	InteruptClass::cBuffer.push(interuptor);
+bool InteruptClass::push(InteruptorClass* interuptor){
+	cBuffer.push(interuptor);
 }
 
-InteruptorClass InteruptClass::peek(){
-		return InteruptClass::cBuffer.first();
+InteruptorClass* InteruptClass::peek(){
+		return cBuffer.first();
 }
 
-InteruptorClass InteruptClass::pop(){
-		return InteruptClass::cBuffer.pop();
+InteruptorClass* InteruptClass::pop(){
+		return cBuffer.pop();
 }
 
 int InteruptClass::interuptCount(){
-		return InteruptClass::cBuffer.size();
+		return cBuffer.size();
 }
 
-bool InteruptClass::priority(InteruptorClass interuptor){
-	InteruptClass::cBuffer.unshift(interuptor);
+bool InteruptClass::priority(InteruptorClass* interuptor){
+	cBuffer.unshift(interuptor);
 }
 
 bool InteruptClass::hasInterupts(){
-	return !InteruptClass::cBuffer.isEmpty();
+	return !cBuffer.isEmpty();
 }
 
 // Aside from init, this is the only function called - not invoked by an interupt
 // It is called in loop. If the function is deletred, the Interuptor must be destroyed
 InteruptorClass InteruptClass::runNextInterupt()
 {
-	InteruptorClass interuptor  = InteruptClass::peek();
-	if(interuptor.canRunFunction()){
-		interuptor.runInterupt();
-		interuptor.InteruptCount(InteruptClass::cBuffer.size());
-		if(interuptor.canInteruptInfoBeDeleted()){
+	InteruptorClass* interuptor  = InteruptClass::peek();
+	if(interuptor->canRunFunction()){
+		interuptor->runInterupt();
+		interuptor->InteruptCount(cBuffer.size());
+		if(interuptor->canInteruptInfoBeDeleted()){
 			InteruptClass::pop();
-			interuptor.deleteMe();
+			interuptor->deleteMe();
 		}
 	}
 	else 
@@ -101,22 +103,30 @@ void testFunction(InteruptorClass interupt) {
 void InteruptClass::BuildStaticTest() {
 	int order = 0;
 	Serial.println("Building test fifo queue");
-	InteruptorClass inter; 
-	inter.init(testFunction, EnumsClass::Push,EnumsClass::CheckInTemp, ++order,2, InteruptClass::cBuffer.size());
-	InteruptClass::push(inter);
-	inter.printlnMe();
-	inter.init(testFunction, EnumsClass::Push,EnumsClass::CheckMinSensors, ++order,3, InteruptClass::cBuffer.size());
-	InteruptClass::push(inter);
-	inter.printlnMe();
-	inter.init(testFunction, EnumsClass::Push,EnumsClass::CheckSapLines, ++order,4, InteruptClass::cBuffer.size());
-	InteruptClass::push(inter);
-	inter.printlnMe();
-	inter.init(testFunction, EnumsClass::Priority,EnumsClass::CheckSapFloat, ++order,1, InteruptClass::cBuffer.size());
-	InteruptClass::push(inter);
-	inter.printlnMe();
-	inter.init(testFunction, EnumsClass::Push,EnumsClass::Void, ++order,5, InteruptClass::cBuffer.size());
-	InteruptClass::push(inter);
-	inter.printlnMe();
+	InteruptorClass* inter1 = new InteruptorClass 
+	(testFunction, EnumsClass::Push,EnumsClass::CheckInTemp, ++order,2, cBuffer.size());
+	InteruptClass::push(inter1);
+	inter1->printlnMe();
+
+	InteruptorClass* inter2 = new InteruptorClass
+	(testFunction, EnumsClass::Push,EnumsClass::CheckMinSensors, ++order,3, cBuffer.size());
+	InteruptClass::push(inter2);
+	inter2->printlnMe();
+
+	InteruptorClass* inter3 = new InteruptorClass
+	(testFunction, EnumsClass::Push,EnumsClass::CheckSapLines, ++order,4, cBuffer.size());
+	InteruptClass::push(inter3);
+	inter3->printlnMe();
+
+	InteruptorClass* inter4 = new InteruptorClass
+	(testFunction, EnumsClass::Priority,EnumsClass::CheckSapFloat, ++order,1, cBuffer.size());
+	InteruptClass::push(inter4);
+	inter4->printlnMe();
+
+	InteruptorClass* inter5 = new InteruptorClass
+	(testFunction, EnumsClass::Push,EnumsClass::Void, ++order,5, cBuffer.size());
+	InteruptClass::push(inter5);
+	inter5->printlnMe();
 	Serial.print("Buffer Count - ");
 	Serial.println(cBuffer.size()); 
 }

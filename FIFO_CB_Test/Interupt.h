@@ -14,16 +14,14 @@
 
 class InteruptClass
 {
-	static const int _bufferSize = 20;
 protected:
 
-	typedef void (*fPointer)(InteruptorClass interupt);
+	typedef void (*fPointer)(InteruptorClass* interupt);
 private:
-	static CircularBuffer<InteruptorClass, _bufferSize> cBuffer;
-	static bool push(InteruptorClass interupt);
-	static bool priority(InteruptorClass interupt);
-	static InteruptorClass peek();
-	static InteruptorClass pop();
+	static bool push(InteruptorClass* interupt);
+	static bool priority(InteruptorClass* interupt);
+	static InteruptorClass* peek();
+	static InteruptorClass* pop();
 	
 
 // Test stuff

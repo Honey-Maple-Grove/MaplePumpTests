@@ -15,6 +15,15 @@ typedef void (*fPointer)(InteruptorClass interupt);
  protected:
 
  public:
+
+	 InteruptorClass(void (*fPointer)(InteruptorClass interupt),
+		 EnumsClass::Interupt pushPriority,
+		 EnumsClass::Interupt fName,
+		 long cycle,
+		 int repeats,
+		 int interuptCount);
+	 ~InteruptorClass() {};
+
 	 void init(void (*fPointer)(InteruptorClass interupt),
 		 EnumsClass::Interupt pushPriority,
 		 EnumsClass::Interupt fName,

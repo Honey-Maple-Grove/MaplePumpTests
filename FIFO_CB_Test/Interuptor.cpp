@@ -5,6 +5,20 @@
 #include "Interuptor.h"
 
 
+InteruptorClass::InteruptorClass(void (*fPointer)(InteruptorClass interupt),
+	EnumsClass::Interupt pushPriority,
+	EnumsClass::Interupt fName,
+	long cycle,
+	int repeats,
+	int interuptCount)
+{
+	_fPointer = fPointer;
+	_pushPriority = pushPriority;
+	_fName = fName;
+	_cycle = cycle;
+	_repeats = repeats;
+	_interuptCount = interuptCount;
+}
 void InteruptorClass::init(void (*fPointer)(InteruptorClass interupt),
 	EnumsClass::Interupt pushPriority,
 	EnumsClass::Interupt fName,
@@ -23,23 +37,25 @@ void InteruptorClass::InteruptCount(int count) {
 	_interuptCount = count;
 }
 	bool InteruptorClass::canRunFunction() {
-		if((millis() >= _lastMillis + _cycle) && 
-			_repeatCount <= _repeats){
+		if((millis() >= (_lastMillis + _cycle)) && 
+			_repeatCount >= _repeats){
 			_repeatCount++;
 			_lastMillis = millis();
 			return true;
 		}
 		else{
+			_repeatCount++;
 			return false;
 		}
 	}
 
 	void InteruptorClass::printlnMe() {
-		String aboutMe = _interuptCount + " " +
+		String aboutMe = 
 			EnumsClass::EnumStr(_pushPriority) + "-"
 			+ EnumsClass::EnumStr(_fName) + "-"
 			+ _cycle + "/"
-			+ _repeats;
+			+ _repeats + " /" 
+			+ _interuptCount;
 		Serial.println(aboutMe);
 	}
 	
@@ -57,5 +73,5 @@ void InteruptorClass::InteruptCount(int count) {
 	void InteruptorClass::deleteMe(){
 		delete this;
 	}
-InteruptorClass Interuptor;
+//InteruptorClass Interuptor;
 
