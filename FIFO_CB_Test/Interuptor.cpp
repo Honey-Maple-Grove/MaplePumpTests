@@ -8,36 +8,38 @@
 InteruptorClass::InteruptorClass(void (*fPointer)(InteruptorClass interupt),
 	EnumsClass::Interupt pushPriority,
 	EnumsClass::Interupt fName,
-	long cycle,
+	unsigned long period,
 	int repeats,
-	int interuptCount)
+	int repeatCount)
 {
 	_fPointer = fPointer;
 	_pushPriority = pushPriority;
 	_fName = fName;
-	_cycle = cycle;
+	_period = period;
 	_repeats = repeats;
-	_interuptCount = interuptCount;
+	_repeatCount = repeatCount;
 }
 void InteruptorClass::init(void (*fPointer)(InteruptorClass interupt),
 	EnumsClass::Interupt pushPriority,
 	EnumsClass::Interupt fName,
-	long cycle,
+	unsigned long period,
 	int repeats,
-	int interuptCount)
+	int repeatCount)
 {
 		_fPointer = fPointer;
 		_pushPriority = pushPriority;
 		_fName = fName;
-		_cycle = cycle;
+		_period = period;
 		_repeats = repeats;
-		_interuptCount = interuptCount;
+		_repeatCount = repeatCount;
+		_lastMillis = millis();
 }
-void InteruptorClass::InteruptCount(int count) {
-	_interuptCount = count;
+void InteruptorClass::repeatCount(int count) {
+	_repeatCount = count;
 }
 	bool InteruptorClass::canRunFunction() {
-		if((millis() >= (_lastMillis + _cycle)) && 
+		_currentMillis = millis();
+		if((_currentMillis - _lastMillis >= _period) &&
 			_repeatCount >= _repeats){
 			_repeatCount++;
 			_lastMillis = millis();
@@ -53,9 +55,9 @@ void InteruptorClass::InteruptCount(int count) {
 		String aboutMe = 
 			EnumsClass::EnumStr(_pushPriority) + "-"
 			+ EnumsClass::EnumStr(_fName) + "-"
-			+ _cycle + "/"
+			+ _period + "/"
 			+ _repeats + " /" 
-			+ _interuptCount;
+			+ _repeatCount;
 		Serial.println(aboutMe);
 	}
 	

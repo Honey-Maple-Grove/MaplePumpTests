@@ -11,7 +11,7 @@ Interrupt notes
 		Flow meter - for each rotation of the flowmeter and interrupt is raised to increment the flow counter.
 		
 		The timed and senssor test Interrupts set flags that are tested in the sketch loop. The flowmeter interrupt just increments The counter.Flow calculations are performed anytime a log record is created.
-		The priority order of handling the interrupts are:Tank float then timed interrupts. 
+		The lifoPush order of handling the interrupts are:Tank float then timed interrupts. 
 		The vacuum interrupt is handled in eight slices, one for each line. 
 		Each line is tested through One iteration of the loop.
 		The first iteration Tests the vacuum and closes all the lines if vacuum is lost.
@@ -45,7 +45,7 @@ static CircularBuffer<InteruptorClass*, _bufferSize> cBuffer;
 void InteruptClass::init() {
 }
 
-bool InteruptClass::push(InteruptorClass* interuptor){
+bool InteruptClass::fifoPush(InteruptorClass* interuptor){
 	cBuffer.push(interuptor);
 }
 
@@ -61,7 +61,7 @@ int InteruptClass::interuptCount(){
 		return cBuffer.size();
 }
 
-bool InteruptClass::priority(InteruptorClass* interuptor){
+bool InteruptClass::lifoPush(InteruptorClass* interuptor){
 	cBuffer.unshift(interuptor);
 }
 
@@ -76,7 +76,7 @@ InteruptorClass InteruptClass::runNextInterupt()
 	InteruptorClass* interuptor  = InteruptClass::peek();
 	if(interuptor->canRunFunction()){
 		interuptor->runInterupt();
-		interuptor->InteruptCount(cBuffer.size());
+		//interuptor->repeatCount(cBuffer.size()); // ????
 		if(interuptor->canInteruptInfoBeDeleted()){
 			InteruptClass::pop();
 			interuptor->deleteMe();
@@ -104,28 +104,28 @@ void InteruptClass::BuildStaticTest() {
 	int order = 0;
 	Serial.println("Building test fifo queue");
 	InteruptorClass* inter1 = new InteruptorClass 
-	(testFunction, EnumsClass::Push,EnumsClass::CheckInTemp, ++order,2, cBuffer.size());
-	InteruptClass::push(inter1);
+	(testFunction, EnumsClass::FifoPush,EnumsClass::CheckInTemp, ++order,2, cBuffer.size());
+	InteruptClass::fifoPush(inter1);
 	inter1->printlnMe();
 
 	InteruptorClass* inter2 = new InteruptorClass
-	(testFunction, EnumsClass::Push,EnumsClass::CheckMinSensors, ++order,3, cBuffer.size());
-	InteruptClass::push(inter2);
+	(testFunction, EnumsClass::FifoPush,EnumsClass::CheckMinSensors, ++order,3, cBuffer.size());
+	InteruptClass::fifoPush(inter2);
 	inter2->printlnMe();
 
 	InteruptorClass* inter3 = new InteruptorClass
-	(testFunction, EnumsClass::Push,EnumsClass::CheckSapLines, ++order,4, cBuffer.size());
-	InteruptClass::push(inter3);
+	(testFunction, EnumsClass::FifoPush,EnumsClass::CheckSapLines, ++order,4, cBuffer.size());
+	InteruptClass::fifoPush(inter3);
 	inter3->printlnMe();
 
 	InteruptorClass* inter4 = new InteruptorClass
-	(testFunction, EnumsClass::Priority,EnumsClass::CheckSapFloat, ++order,1, cBuffer.size());
-	InteruptClass::push(inter4);
+	(testFunction, EnumsClass::LifoPush,EnumsClass::CheckSapFloat, ++order,1, cBuffer.size());
+	InteruptClass::lifoPush(inter4);
 	inter4->printlnMe();
 
 	InteruptorClass* inter5 = new InteruptorClass
-	(testFunction, EnumsClass::Push,EnumsClass::Void, ++order,5, cBuffer.size());
-	InteruptClass::push(inter5);
+	(testFunction, EnumsClass::FifoPush,EnumsClass::Void, ++order,5, cBuffer.size());
+	InteruptClass::fifoPush(inter5);
 	inter5->printlnMe();
 	Serial.print("Buffer Count - ");
 	Serial.println(cBuffer.size()); 

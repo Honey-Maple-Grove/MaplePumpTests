@@ -18,19 +18,10 @@ protected:
 
 	typedef void (*fPointer)(InteruptorClass* interupt);
 private:
-	static bool push(InteruptorClass* interupt);
-	static bool priority(InteruptorClass* interupt);
+	static bool fifoPush(InteruptorClass* interupt);
+	static bool lifoPush(InteruptorClass* interupt);
 	static InteruptorClass* peek();
 	static InteruptorClass* pop();
-	
-
-// Test stuff
-
-	static void TestCall(InteruptorClass interupt) {
-		Serial.println("CB1 called");
-	}
-
-
 public:
 	static void init ();
 	static int interuptCount();

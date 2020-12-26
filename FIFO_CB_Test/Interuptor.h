@@ -19,32 +19,32 @@ typedef void (*fPointer)(InteruptorClass interupt);
 	 InteruptorClass(void (*fPointer)(InteruptorClass interupt),
 		 EnumsClass::Interupt pushPriority,
 		 EnumsClass::Interupt fName,
-		 long cycle,
+		 unsigned long period,
 		 int repeats,
-		 int interuptCount);
+		 int repeatCount);
 	 ~InteruptorClass() {};
 
 	 void init(void (*fPointer)(InteruptorClass interupt),
 		 EnumsClass::Interupt pushPriority,
 		 EnumsClass::Interupt fName,
-		 long cycle,
+		 unsigned long period,
 		 int repeats,
-		 int interuptCount);
+		 int repeatCount);
 	bool canRunFunction();
 	bool canInteruptInfoBeDeleted();
 	EnumsClass::Interupt Interupt();
 	void runInterupt();
 	void deleteMe();
 	void printlnMe();
-	void InteruptCount(int count);
+	void repeatCount(int count);
 private:
 EnumsClass::Interupt _fName;
 EnumsClass::Interupt _pushPriority;
-long _lastMillis;
-long _cycle;
+unsigned long _currentMillis;
+unsigned long _lastMillis;
+unsigned long _period;
 int _repeats;
-int _repeatCount = 0;
-int _interuptCount = 0;
+int _repeatCount = 0; // actual number of function process runs
 fPointer _fPointer;
 };
 

@@ -45,3 +45,4 @@
 *.db
 *.ipch
 /v16/
+FIFO_CB_Test/Debug/
