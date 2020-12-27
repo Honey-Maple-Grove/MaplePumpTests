@@ -1,43 +1,19 @@
-// interrupts.cpp
-// 
-// 
+// interupt.cpp
+/* 
+	Encapsulatres all interupt handling for a timed interupt/ pin interupt system
+	It conatrins all the interupt functions that are pointed to;
+	It cantains logic for static testing
+	It manages the TimerOne & TimerThree interpts (thanks - 
+@PaulStoffregen)(FUTURE)
+	If manages the Circular Buffer (thanks - Roberto Lo Giacco)
+*/ 
 #include "Interupt.h"
 /*
 Interrupt notes
-	There are three interrupts types used in the pump system:
-		Timed – Every second. This is used by `the temperature and vacuum calculations
-		routines, along with the vacuum test.
-		Tank float - Whenever the status of the tank float changes: Full or empty, a change interrupt is raised.
-		Flow meter - for each rotation of the flowmeter and interrupt is raised to increment the flow counter.
-		
-		The timed and senssor test Interrupts set flags that are tested in the sketch loop. The flowmeter interrupt just increments The counter.Flow calculations are performed anytime a log record is created.
-		The lifoPush order of handling the interrupts are:Tank float then timed interrupts. 
-		The vacuum interrupt is handled in eight slices, one for each line. 
-		Each line is tested through One iteration of the loop.
-		The first iteration Tests the vacuum and closes all the lines if vacuum is lost.
-		Each subsequent iteration tests the next line.
-
-		Once this is operational, integration with the web server time slices will be done.
-*/
-/*
-Timed Line interrupt approach:
-When the loop occurs, we check to see which, if any, interrupt is to be flagged to be run in this iteration.
-There are 2 options:
- !: Run a specific timed interrupt;
-	a: Check Sensors (seys appropriate flags)
-	b: Manage Heater
-	c: Manage SapPump
-	d: Manage vacuum pump
- 2: Run a single “line” of the line check
-	For the first rep (counter preset to 0), close the all the lines, set rep counter to 1, set timer to 2 seconds
-	Calls close lines (2-8)s – using Statics::Delay (2) for 2 seconds,
-	line1 force open
-	return
-Each rep:
-		Open line – Delay(2)
-		Check Vacuum – if ok, leave open, else  close, set line state
-		Counter++
-		return
+	1. Initial implementation is without timed interupts (the final objective - use TimerOne/TimeThree) - see ReadMe
+	2. The interupt function calls are all done in the IteruptClass - There is no dynammic discovery
+	3. Creating an interupt creates and adds an Interuptor to the circular lifo/fifo queue - see Interuptor.h
+	4. Since this is designed for timed/pin interupts - there is no loop logic
 */
 
 static const int _bufferSize = 20;
@@ -76,55 +52,56 @@ InteruptorClass InteruptClass::runNextInterupt()
 	InteruptorClass* interuptor  = InteruptClass::peek();
 	if(interuptor->canRunFunction()){
 		interuptor->runInterupt();
-		//interuptor->repeatCount(cBuffer.size()); // ????
-		if(interuptor->canInteruptInfoBeDeleted()){
 			InteruptClass::pop();
 			interuptor->deleteMe();
-		}
 	}
 	else 
 	{
-	// do nothimg
+	// do nothimg - where waiting for period to elapse 
 	}
 }
 
 // Test Stufff{
 void InteruptClass::RunStaticTest() {
 	Serial.println("Consuming test fifo queue");
-	while (InteruptClass::hasInterupts()) {
-		InteruptClass::runNextInterupt();
-	}
+	Serial.println("");
+	// loop will consume the interupts
 }
 
 void testFunction(InteruptorClass interupt) {
+	long randNumber = random(2);
+	//interupt.setRepeat(randNumber = 0);
 	interupt.printlnMe();
 }
+
+// Note - I'm using period to indicate expected order of popping
 
 void InteruptClass::BuildStaticTest() {
 	int order = 0;
 	Serial.println("Building test fifo queue");
+	Serial.println("");
 	InteruptorClass* inter1 = new InteruptorClass 
-	(testFunction, EnumsClass::FifoPush,EnumsClass::CheckInTemp, ++order,2, cBuffer.size());
+	(testFunction, EnumsClass::FifoPush,EnumsClass::CheckInTemp, 2);
 	InteruptClass::fifoPush(inter1);
 	inter1->printlnMe();
 
 	InteruptorClass* inter2 = new InteruptorClass
-	(testFunction, EnumsClass::FifoPush,EnumsClass::CheckMinSensors, ++order,3, cBuffer.size());
+	(testFunction, EnumsClass::FifoPush,EnumsClass::CheckMinSensors, 3);
 	InteruptClass::fifoPush(inter2);
 	inter2->printlnMe();
 
 	InteruptorClass* inter3 = new InteruptorClass
-	(testFunction, EnumsClass::FifoPush,EnumsClass::CheckSapLines, ++order,4, cBuffer.size());
+	(testFunction, EnumsClass::FifoPush,EnumsClass::CheckSapLines, 4);
 	InteruptClass::fifoPush(inter3);
 	inter3->printlnMe();
 
 	InteruptorClass* inter4 = new InteruptorClass
-	(testFunction, EnumsClass::LifoPush,EnumsClass::CheckSapFloat, ++order,1, cBuffer.size());
+	(testFunction, EnumsClass::LifoPush,EnumsClass::CheckSapFloat, 1);
 	InteruptClass::lifoPush(inter4);
 	inter4->printlnMe();
 
 	InteruptorClass* inter5 = new InteruptorClass
-	(testFunction, EnumsClass::FifoPush,EnumsClass::Void, ++order,5, cBuffer.size());
+	(testFunction, EnumsClass::FifoPush,EnumsClass::Void, 5);
 	InteruptClass::fifoPush(inter5);
 	inter5->printlnMe();
 	Serial.print("Buffer Count - ");

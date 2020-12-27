@@ -1,79 +1,74 @@
 // 
-// 
+// InteruptorClass
+//
+// == function pointer -  function to run when Iteruptor wait period has elapsed
+// == period - period to wait (in millis) for function to run
+// == repeat indicator - after function runs, it sets this true if it has to be run again
+//  I use this in my maple sap vacuum to test multiple valves (maple lines) for pressure leakage
 // 
 
 #include "Interuptor.h"
-
-
+// The enums are used for testing display - not requied for implementation
 InteruptorClass::InteruptorClass(void (*fPointer)(InteruptorClass interupt),
-	EnumsClass::Interupt pushPriority,
-	EnumsClass::Interupt fName,
-	unsigned long period,
-	int repeats,
-	int repeatCount)
+	EnumsClass::Interupt fifoLifoPush,
+	EnumsClass::Interupt functionName,
+	unsigned long period)
 {
 	_fPointer = fPointer;
-	_pushPriority = pushPriority;
-	_fName = fName;
+	_fifoLifoPush = fifoLifoPush;
+	_functionName = functionName;
 	_period = period;
-	_repeats = repeats;
-	_repeatCount = repeatCount;
+	_repeatMe = false;
+	_lastMillis = millis(); // used for millis() period test
 }
-void InteruptorClass::init(void (*fPointer)(InteruptorClass interupt),
-	EnumsClass::Interupt pushPriority,
-	EnumsClass::Interupt fName,
-	unsigned long period,
-	int repeats,
-	int repeatCount)
-{
-		_fPointer = fPointer;
-		_pushPriority = pushPriority;
-		_fName = fName;
-		_period = period;
-		_repeats = repeats;
-		_repeatCount = repeatCount;
+
+// number of timed the iterupt function has run
+void InteruptorClass::incrRepeatCount() {
+	_repeatCount++;
+}
+
+void InteruptorClass::setRepeat(bool repeat) {
+	_repeatMe = repeat;
+}
+
+int InteruptorClass::repeatCount() {
+	return _repeatCount;
+}
+
+bool InteruptorClass::repeatMe() {
+	return _repeatMe;
+}
+
+bool InteruptorClass::canRunFunction() {
+	_currentMillis = millis();
+	if(_currentMillis - _lastMillis >= _period){
 		_lastMillis = millis();
-}
-void InteruptorClass::repeatCount(int count) {
-	_repeatCount = count;
-}
-	bool InteruptorClass::canRunFunction() {
-		_currentMillis = millis();
-		if((_currentMillis - _lastMillis >= _period) &&
-			_repeatCount >= _repeats){
-			_repeatCount++;
-			_lastMillis = millis();
-			return true;
-		}
-		else{
-			_repeatCount++;
-			return false;
-		}
+		return true;
 	}
+	else{
+		return false;
+	}
+}
 
-	void InteruptorClass::printlnMe() {
-		String aboutMe = 
-			EnumsClass::EnumStr(_pushPriority) + "-"
-			+ EnumsClass::EnumStr(_fName) + "-"
-			+ _period + "/"
-			+ _repeats + " /" 
-			+ _repeatCount;
-		Serial.println(aboutMe);
-	}
+void InteruptorClass::printlnMe() {
+	String aboutMe = 
+		EnumsClass::EnumStr(_fifoLifoPush) + "-"
+		+ EnumsClass::EnumStr(_functionName) + "-"
+		+ _period + "/"
+		+ _repeatMe ;
+	Serial.println(aboutMe);
+}
 	
-	bool InteruptorClass::canInteruptInfoBeDeleted(){
-		return _repeatCount <= _repeats;
-	}
+EnumsClass::Interupt InteruptorClass::Interupt(){
+	return _functionName;
+} 
 
-	EnumsClass::Interupt InteruptorClass::Interupt(){
-		return _fName;
-	} 
-	void InteruptorClass::runInterupt(){
-		_fPointer;
-	}
+void InteruptorClass::runInterupt(){
+	_fPointer();
+}
 
-	void InteruptorClass::deleteMe(){
-		delete this;
-	}
+void InteruptorClass::deleteMe(){
+	delete this;
+}
 //InteruptorClass Interuptor;
 

@@ -26,22 +26,15 @@
  */
 #include <stdio.h>
 #include "Interupt.h"
-void run() {
-    if (InteruptClass::hasInterupts){
-        InteruptClass::runNextInterupt();
-        }
-}
-   
-
-void ResetFIFO() {
-    InteruptClass::init();
-}
-
 
 void loop() {
- 
+    // keeps trying
+    if (InteruptClass::hasInterupts) {
+        Serial.print("Consume Buffer Count - ");
+        Serial.println(InteruptClass::interuptCount());
+        InteruptClass::runNextInterupt();
+    }
 }
-
 
 void setup() {
   //Open serial port at 115200 baud
@@ -52,6 +45,7 @@ void setup() {
   Serial.println("Test Started");
   //Wait a little bit to make sure we don't get any garbage on the serial monitor
   delay(100);
+  InteruptClass::init(); // does nothing until timers are implemented
   InteruptClass::BuildStaticTest();
   InteruptClass::RunStaticTest();
 }

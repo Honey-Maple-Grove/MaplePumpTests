@@ -11,7 +11,7 @@
 #include "Enums.h"
 class InteruptorClass
 {
-typedef void (*fPointer)(InteruptorClass interupt);
+typedef void (*fPointer)();
  protected:
 
  public:
@@ -19,31 +19,25 @@ typedef void (*fPointer)(InteruptorClass interupt);
 	 InteruptorClass(void (*fPointer)(InteruptorClass interupt),
 		 EnumsClass::Interupt pushPriority,
 		 EnumsClass::Interupt fName,
-		 unsigned long period,
-		 int repeats,
-		 int repeatCount);
+		 unsigned long period);
 	 ~InteruptorClass() {};
 
-	 void init(void (*fPointer)(InteruptorClass interupt),
-		 EnumsClass::Interupt pushPriority,
-		 EnumsClass::Interupt fName,
-		 unsigned long period,
-		 int repeats,
-		 int repeatCount);
 	bool canRunFunction();
-	bool canInteruptInfoBeDeleted();
+	void incrRepeatCount();
+	bool repeatMe();
+	void setRepeat(bool repeat);
+	int repeatCount();
 	EnumsClass::Interupt Interupt();
 	void runInterupt();
 	void deleteMe();
 	void printlnMe();
-	void repeatCount(int count);
 private:
-EnumsClass::Interupt _fName;
-EnumsClass::Interupt _pushPriority;
+EnumsClass::Interupt _functionName;
+EnumsClass::Interupt _fifoLifoPush;
 unsigned long _currentMillis;
 unsigned long _lastMillis;
 unsigned long _period;
-int _repeats;
+bool _repeatMe;
 int _repeatCount = 0; // actual number of function process runs
 fPointer _fPointer;
 };
