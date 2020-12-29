@@ -67,7 +67,32 @@ void InteruptClass::RunStaticTest() {
 	Serial.println("");
 	// loop will consume the interupts
 }
+void InteruptClass::PrintBuffer() {
+	InteruptorClass* interuptor;
+	if (cBuffer.isEmpty()) {
+		Serial.println("empty");
+	}
+	else {
+		Serial.print("[");
+		for (decltype(cBuffer)::index_t i = 0; i <= cBuffer.size() - 1; i++) {
+			interuptor = cBuffer[i];
+			interuptor->printlnMe();
+			//Serial.print(cBuffer[i]);
+			//Serial.print(",");
+		}
+		
 
+		Serial.print(cBuffer.size());
+		Serial.print("/");
+		Serial.print(cBuffer.size() + cBuffer.available());
+		if (cBuffer.isFull()) {
+			Serial.print(" full");
+		}
+
+		Serial.println(")");
+	}
+
+}
 void testFunction(InteruptorClass interupt) {
 	long randNumber = random(2);
 	//interupt.setRepeat(randNumber = 0);
@@ -82,28 +107,28 @@ void InteruptClass::BuildStaticTest() {
 	Serial.println("");
 	InteruptorClass* inter1 = new InteruptorClass 
 	(testFunction, EnumsClass::FifoPush,EnumsClass::CheckInTemp, 2);
-	InteruptClass::fifoPush(inter1);
-	inter1->printlnMe();
+	cBuffer.push(inter1); // InteruptClass::fifoPush(inter1);
+	InteruptClass::PrintBuffer(); // inter1->printlnMe();
 
 	InteruptorClass* inter2 = new InteruptorClass
 	(testFunction, EnumsClass::FifoPush,EnumsClass::CheckMinSensors, 3);
-	InteruptClass::fifoPush(inter2);
-	inter2->printlnMe();
+	cBuffer.push(inter2); // InteruptClass::fifoPush(inter2);
+	InteruptClass::PrintBuffer(); // inter2->printlnMe();
 
 	InteruptorClass* inter3 = new InteruptorClass
 	(testFunction, EnumsClass::FifoPush,EnumsClass::CheckSapLines, 4);
-	InteruptClass::fifoPush(inter3);
-	inter3->printlnMe();
+	cBuffer.push(inter3); // InteruptClass::fifoPush(inter3);
+	InteruptClass::PrintBuffer(); // inter3->printlnMe();
 
 	InteruptorClass* inter4 = new InteruptorClass
 	(testFunction, EnumsClass::LifoPush,EnumsClass::CheckSapFloat, 1);
-	InteruptClass::lifoPush(inter4);
-	inter4->printlnMe();
+	cBuffer.unshift(inter4); // InteruptClass::lifoPush(inter4);
+	InteruptClass::PrintBuffer(); // inter4->printlnMe();
 
 	InteruptorClass* inter5 = new InteruptorClass
 	(testFunction, EnumsClass::FifoPush,EnumsClass::Void, 5);
-	InteruptClass::fifoPush(inter5);
-	inter5->printlnMe();
+	cBuffer.push(inter5); // InteruptClass::fifoPush(inter5);
+	InteruptClass::PrintBuffer(); // inter5->printlnMe();
 	Serial.print("Buffer Count - ");
 	Serial.println(cBuffer.size()); 
 }

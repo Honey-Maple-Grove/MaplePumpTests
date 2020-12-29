@@ -32,14 +32,6 @@ typedef void (*fPointer)();
 	void deleteMe();
 	void printlnMe();
 private:
-EnumsClass::Interupt _functionName;
-EnumsClass::Interupt _fifoLifoPush;
-unsigned long _currentMillis;
-unsigned long _lastMillis;
-unsigned long _period;
-bool _repeatMe;
-int _repeatCount = 0; // actual number of function process runs
-fPointer _fPointer;
 };
 
 extern InteruptorClass Interuptor;

@@ -8,6 +8,16 @@
 // 
 
 #include "Interuptor.h"
+
+typedef void (*fPointer)();
+EnumsClass::Interupt _functionName;
+EnumsClass::Interupt _fifoLifoPush;
+unsigned long _currentMillis;
+unsigned long _lastMillis;
+unsigned long _period;
+bool _repeatMe;
+int _repeatCount = 0; // actual number of function process runs
+fPointer _fPointer;
 // The enums are used for testing display - not requied for implementation
 InteruptorClass::InteruptorClass(void (*fPointer)(InteruptorClass interupt),
 	EnumsClass::Interupt fifoLifoPush,

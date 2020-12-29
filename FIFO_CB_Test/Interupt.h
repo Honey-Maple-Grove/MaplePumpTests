@@ -22,6 +22,7 @@ private:
 	static bool lifoPush(InteruptorClass* interupt);
 	static InteruptorClass* peek();
 	static InteruptorClass* pop();
+	static void PrintBuffer();
 public:
 	static void init ();
 	static int interuptCount();
