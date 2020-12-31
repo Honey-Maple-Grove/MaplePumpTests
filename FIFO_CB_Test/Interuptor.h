@@ -11,7 +11,7 @@
 #include "Enums.h"
 class InteruptorClass
 {
-typedef void (*fPointer)();
+typedef void (*fPointer)(InteruptorClass interupt);
  protected:
 
  public:

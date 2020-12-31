@@ -107,27 +107,27 @@ void InteruptClass::BuildStaticTest() {
 	Serial.println("");
 	InteruptorClass* inter1 = new InteruptorClass 
 	(testFunction, EnumsClass::FifoPush,EnumsClass::CheckInTemp, 2);
-	cBuffer.push(inter1); // InteruptClass::fifoPush(inter1);
+	InteruptClass::fifoPush(inter1);
 	InteruptClass::PrintBuffer(); // inter1->printlnMe();
 
 	InteruptorClass* inter2 = new InteruptorClass
 	(testFunction, EnumsClass::FifoPush,EnumsClass::CheckMinSensors, 3);
-	cBuffer.push(inter2); // InteruptClass::fifoPush(inter2);
+	InteruptClass::fifoPush(inter2);
 	InteruptClass::PrintBuffer(); // inter2->printlnMe();
 
 	InteruptorClass* inter3 = new InteruptorClass
 	(testFunction, EnumsClass::FifoPush,EnumsClass::CheckSapLines, 4);
-	cBuffer.push(inter3); // InteruptClass::fifoPush(inter3);
+	InteruptClass::fifoPush(inter3);
 	InteruptClass::PrintBuffer(); // inter3->printlnMe();
 
 	InteruptorClass* inter4 = new InteruptorClass
 	(testFunction, EnumsClass::LifoPush,EnumsClass::CheckSapFloat, 1);
-	cBuffer.unshift(inter4); // InteruptClass::lifoPush(inter4);
+	InteruptClass::lifoPush(inter4);
 	InteruptClass::PrintBuffer(); // inter4->printlnMe();
 
 	InteruptorClass* inter5 = new InteruptorClass
 	(testFunction, EnumsClass::FifoPush,EnumsClass::Void, 5);
-	cBuffer.push(inter5); // InteruptClass::fifoPush(inter5);
+	InteruptClass::fifoPush(inter5);
 	InteruptClass::PrintBuffer(); // inter5->printlnMe();
 	Serial.print("Buffer Count - ");
 	Serial.println(cBuffer.size()); 

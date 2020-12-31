@@ -9,7 +9,7 @@
 
 #include "Interuptor.h"
 
-typedef void (*fPointer)();
+typedef void (*fPointer)(InteruptorClass interupt);
 EnumsClass::Interupt _functionName;
 EnumsClass::Interupt _fifoLifoPush;
 unsigned long _currentMillis;
@@ -74,7 +74,7 @@ EnumsClass::Interupt InteruptorClass::Interupt(){
 } 
 
 void InteruptorClass::runInterupt(){
-	_fPointer();
+	_fPointer(&this);
 }
 
 void InteruptorClass::deleteMe(){
