@@ -1,0 +1,477 @@
+Webserver and timer functions
+Feb 19, 2013, 03:55 pm
+HI I adopted the code that was posted by @zoomkat and tried to extend it a bit by using adding a timed function.
+
+My project in a nutshel, my aim is to control lights from the internet and put them in timed control as well. I will be switching between two modes using a physical button to start with. I have the timed control working separately and the webserver working separately. The problem I am having is combining the two codes. When the switch is high its supposed to go to the timed function and turn on/off the lights according to the set times, its not doing so at the moment. Please help any pointers?
+
+The other problem is I can access the web page on my laptop but not on my phone pr any other laptop. The ES is stacked on to the UNO and the uno is connected to my laptop via ethernet cable and laptop is connect to a wireless network. The code is below:
+
+I have attached the code
+* Webserver___Timer_forum.ino
+7.59 KB
+downloaded 319 times
+PaulS
+
+    Guest
+
+Re: Webserver and timer functions
+#1
+Feb 19, 2013, 05:54 pm
+Serial.print() statements would help identify the problem. Is the switch being read correctly?
+
+Quote
+
+    The other problem is I can access the web page on my laptop but not on my phone pr any other laptop. The ES is stacked on to the UNO and the uno is connected to my laptop via ethernet cable and laptop is connect to a wireless network.
+
+
+How are you accessing the Arduino from the PC?
+How is the PC configured, as far as internet sharing?
+
+Why is the Arduino not connected to the router?
+How is the router configured, as far as port forwarding?
+simgerallds
+
+    Guest
+
+Re: Webserver and timer functions
+#2
+Feb 20, 2013, 12:49 am
+Quote from: PaulS on Feb 19, 2013, 05:54 pm
+
+
+    Serial.print() statements would help identify the problem. Is the switch being read correctly?
+
+    Quote
+
+        The other problem is I can access the web page on my laptop but not on my phone pr any other laptop. The ES is stacked on to the UNO and the uno is connected to my laptop via ethernet cable and laptop is connect to a wireless network.
+
+
+    How are you accessing the Arduino from the PC?
+    How is the PC configured, as far as internet sharing?
+
+    Why is the Arduino not connected to the router?
+    How is the router configured, as far as port forwarding?
+
+
+
+I download the program using the USB cable and I am accessing wifi in my Uni as the internet is provided that way, I am not doing it at home unfortunately.
+
+Thanks for taking time to read
+simgerallds
+
+    Guest
+
+Re: Webserver and timer functions
+#3
+Feb 20, 2013, 03:41 am
+Yes I did try that and the switch is being recognised but does not seem to be going into the interrupt function for the time. Below is what I tried to debug the problem: I have attached it because of the character limit. Thanks again
+
+The forum is amazing
+* forum_server_timer.ino
+10.1 KB
+downloaded 248 times
+PaulS
+
+    Guest
+
+Re: Webserver and timer functions
+#4
+Feb 20, 2013, 10:46 am
+Code: [Select]
+
+   while (!Serial) {
+    ; // wait for serial port to connect. Needed for Leonardo only
+ 
+ 
+  cli();//stop or disable interrupts
+
+  //setting timer1 to interrupt at 1Hz
+  TCCR1A = 0;// setting entire TCCR1A register to 0
+  TCCR1B = 0;// setting entire TCCR1A register to 0
+  TCNT1  = 0;//initialize counter value to 0
+
+    // set compare match register for 1hz increments
+  OCR1A = 15624;// = (16*10^6) / (1*1024) - 1 (must be <65536)
+  // turn on CTC mode
+  TCCR1B |= (1 << WGM12);
+  // Set CS10 and CS12 bits for 1024 prescaler
+  TCCR1B |= (1 << CS12) | (1 << CS10); 
+  // enable timer compare interrupt
+  TIMSK1 |= (1 << OCIE1A);
+
+  sei();//enable interrupts
+  X10.init(RTS_PIN, DTR_PIN, BIT_DELAY);
+  }
+
+
+99% of this stuff does not belong in the while loop. The body of the while loop is SUPPOSED to be that ;.
+simgerallds
+
+    Guest
+
+Re: Webserver and timer functions
+#5
+Feb 20, 2013, 03:22 pm
+Thanks will try this and let you know how it goes.
+
+Quote from: PaulS on Feb 20, 2013, 10:46 am
+
+
+    Code: [Select]
+
+       while (!Serial) {
+        ; // wait for serial port to connect. Needed for Leonardo only
+     
+     
+      cli();//stop or disable interrupts
+
+      //setting timer1 to interrupt at 1Hz
+      TCCR1A = 0;// setting entire TCCR1A register to 0
+      TCCR1B = 0;// setting entire TCCR1A register to 0
+      TCNT1  = 0;//initialize counter value to 0
+
+        // set compare match register for 1hz increments
+      OCR1A = 15624;// = (16*10^6) / (1*1024) - 1 (must be <65536)
+      // turn on CTC mode
+      TCCR1B |= (1 << WGM12);
+      // Set CS10 and CS12 bits for 1024 prescaler
+      TCCR1B |= (1 << CS12) | (1 << CS10); 
+      // enable timer compare interrupt
+      TIMSK1 |= (1 << OCIE1A);
+
+      sei();//enable interrupts
+      X10.init(RTS_PIN, DTR_PIN, BIT_DELAY);
+      }
+
+
+    99% of this stuff does not belong in the while loop. The body of the while loop is SUPPOSED to be that ;.
+
+//Libraries 
+#include <SPI.h>
+#include <Time.h>
+#include <X10Firecracker.h>
+
+//Constants
+//#define LED 13
+int sec = 0;
+int minut = 0;
+int hr = 0;
+int change = 0;
+const int MODE = 8;
+int modeState = 0;
+
+#define RTS_PIN     2	                // RTS line for C17A - DB9 pin 7
+#define DTR_PIN     3	                // DTR line for C17A - DB9 pin 4
+#define BIT_DELAY   1                   // mS delay between bits (1 mS OK)
+
+
+#include <SPI.h>
+#include <Ethernet.h>
+#include <X10Firecracker.h>
+#include <WString.h>
+
+#define RTS_PIN     2	                // RTS line for C17A - DB9 pin 7
+#define DTR_PIN     3	                // DTR line for C17A - DB9 pin 4
+#define BIT_DELAY   1                   // mS delay between bits (1 mS OK)
+
+// Enter a MAC address and IP address for your controller below.
+// The IP address will be dependent on your local network:
+
+byte mac[] = { 
+  0x90, 0xA2, 0xDA, 0x00, 0xFC, 0x47 };
+IPAddress ip(169,254,42,189); //ethernet ip add based in the library
+
+String s = String(30); //string for fetching data from address
+String cmd = "/X" ; //X is an example of the command that will come after the ethernet address in the GET...
+
+
+// Initialize the Ethernet server library
+// with the IP address and port you want to use 
+// (port 80 is default for HTTP):
+EthernetServer server(80);
+
+void setup() {
+ // Open serial communications and wait for port to open:
+   Serial.begin(9600);
+   while (!Serial) {
+    ; // wait for serial port to connect. Needed for Leonardo only
+  
+  
+  cli();//stop or disable interrupts
+
+  //setting timer1 to interrupt at 1Hz
+  TCCR1A = 0;// setting entire TCCR1A register to 0
+  TCCR1B = 0;// setting entire TCCR1A register to 0
+  TCNT1  = 0;//initialize counter value to 0
+
+    // set compare match register for 1hz increments
+  OCR1A = 15624;// = (16*10^6) / (1*1024) - 1 (must be <65536)
+  // turn on CTC mode
+  TCCR1B |= (1 << WGM12);
+  // Set CS10 and CS12 bits for 1024 prescaler
+  TCCR1B |= (1 << CS12) | (1 << CS10);  
+  // enable timer compare interrupt
+  TIMSK1 |= (1 << OCIE1A);
+
+  sei();//enable interrupts
+  X10.init(RTS_PIN, DTR_PIN, BIT_DELAY);
+  }
+  
+  Serial.print("Pgm started  ");
+
+  // start the Ethernet connection and the server:
+  Ethernet.begin(mac, ip);
+  server.begin();
+  Serial.print("server is at ");
+  Serial.println(Ethernet.localIP());
+  
+
+  X10.init(RTS_PIN, DTR_PIN, BIT_DELAY); 
+}
+
+
+void webserver() {
+  // listen for incoming clients
+  EthernetClient client = server.available();
+  if (client) {
+    Serial.println("new client");
+    // an http request ends with a blank line
+    
+    
+    boolean currentLineIsBlank = true;
+    boolean DoPage=true;
+    
+    while (client.connected()) {
+        if (client.available()) {
+               char c = client.read();
+               Serial.write(c);
+               if (s.length() < 7) { s.concat(c); }   // build up a short string to parse
+               if(s.substring(0,3) == "GET" & DoPage){    // check for the GET from the web page
+                    
+                     cmd=s.substring(4,6);        // get the 2 letters in the string out and call this the CMD,  /A, or /B or /H etc, these come in after the GET
+                     // Serial.println("CMD=");
+                     //Serial.println(cmd);
+                     
+          
+                     // Got a GET so, compare the received command to the specific command and then do something
+                     
+                     if (cmd == "/A" && DoPage) {
+                                Serial.println(F(" Light is now on "));   
+                                X10.sendCmd( hcA, 1, cmdOn );
+                                DoPage = false;
+                     }  
+                     if (cmd == "/C" && DoPage) {
+                                Serial.println(F(" Light is now off"));
+                                X10.sendCmd( hcA, 1, cmdOff );
+                                DoPage = false;
+                     }
+                     if (cmd == "/H" && DoPage) {
+                                Serial.println(F(" Light Bright"));
+                                X10.sendCmd( hcA, 1, cmdBright );
+                               DoPage = false;
+                     }
+                     if (cmd == "/B" && DoPage) {
+                                Serial.println(F("Found C Pole Light Off"));
+                                X10.sendCmd( hcA, 2, cmdDim  );
+                               DoPage = false;
+                     } 
+                     if (cmd == "/S" && DoPage) {
+                                Serial.println(F("Found S  Ceiling on"));
+                                X10.sendCmd( hcA, 7, cmdOn );
+                               DoPage = false;
+                     } 
+                     if (cmd =="/R" && DoPage) {
+                                Serial.println(F("Found T Ceiling Off"));
+                                X10.sendCmd( hcA, 7, cmdOff );
+                               DoPage = false;
+                     }        
+                     if (cmd == "/U" && DoPage) {
+                                Serial.println(F("Found U  Light on"));
+                                X10.sendCmd( hcA, 8, cmdOn );
+                              DoPage = false;
+                     }
+                     if (cmd =="/W" && DoPage) {
+                                Serial.println(F("Found W pole lamp Off"));
+                                X10.sendCmd( hcA, 2, cmdOff );
+                               DoPage = false;
+                     }       
+                 
+               }
+        
+        
+              // if you've gotten to the end of the line (received a newline
+              // character) and the line is blank, the http request has ended,
+              // so you can send a reply
+              if (c == '\n' && currentLineIsBlank) {
+              // send a standard http response header
+                      client.println(F("HTTP/1.1 200 OK"));
+                      client.println(F("Content-Type: text/html"));
+                      client.println(F("Connnection: close"));
+                      client.println();
+                      client.println(F("<!DOCTYPE HTML>"));
+                      client.println(F("<html>"));
+                      client.println(F("<head>"));
+                      client.println(F("<meta content='text/html; charset=ISO-8859-1'http-equiv='content-type'>"));
+                      client.println(F("<title>Simba's Intelligent Home Automation"));
+                      client.println(F("</title>"));
+                      client.println(F("</head>"));
+                      // the next line sets the background color to something nice like blue
+                      client.println(F("<body style='background-color: rgb(0, 0, 153); color: rgb(255, 255, 0);'alink='#cc6600' link='#cc0000' vlink='#993300'>"));
+                      //  load in a background .jpg for the web page.
+                      client.println(F("<BODY BACKGROUND='http://www.onedegreewest.tv/images/al12.jpg' style='width: 481px; height: 690px;'></span><br>"));
+                      //  set up some HTML that has buttons with specific actions that link back to the arduino at the address of the arduino and have a specific string 
+                      client.println(F("<FORM METHOD='LINK' ACTION='http://169.254.42.189./A\r'><INPUT TYPE='submit' VALUE='Lamp On '></FORM>             "));                  
+                      client.println(F("<FORM METHOD='LINK' ACTION='http://169.254.42.189./C\r'><INPUT TYPE='submit' VALUE='Lamp Off '></FORM>  "));      
+//                      client.println(F("<FORM METHOD='LINK' ACTION='http://143.53.156.207./S\r'><INPUT TYPE='submit' VALUE='Lamp On  '></FORM>  "));
+//                      client.println(F("<FORM METHOD='LINK' ACTION='http://143.53.156.207./R\r'><INPUT TYPE='submit' VALUE='Simba's Desk Lamp Off '></FORM>  "));
+//                      client.println(F("<FORM METHOD='LINK' ACTION='http://143.53.156.207./U\r'><INPUT TYPE='submit' VALUE='Simba's Desk Lamp Off'></FORM>  "));
+//                      client.println(F("<FORM METHOD='LINK' ACTION='http://143.53.156.207./W\r'><INPUT TYPE='submit' VALUE='Simba's Desk Lamp Off'></FORM>  "));   
+                      //client.println(F("<FORM METHOD='LINK' ACTION='http://143.53.156.207./B\r'><INPUT TYPE='submit' VALUE='Light Dim'></FORM>  "));
+                     // client.println(F("<FORM METHOD='LINK' ACTION='http://143.53.156.207./H\r'><INPUT TYPE='submit' VALUE='Light Brighten'></FORM>  "));
+                      
+                      
+                      client.println("</html>");
+                      // Clear out the received string
+                      s="";
+                      break;
+                      
+                }
+                if (c == '\n') {
+                      currentLineIsBlank = true;
+                } 
+                else if (c != '\r') {
+                      currentLineIsBlank = false;
+                }
+          }
+    }
+    client.stop();
+   Serial.println("client disonnected");
+    
+  }
+  
+}  // end 
+
+
+void timedControl()
+{
+  Serial.println("yes");
+  Serial.print(change);
+}
+
+void loop()
+{
+  modeState = digitalRead(MODE);
+  
+  if (modeState == HIGH)
+  {
+    Serial.print("+");
+    if(change == 1)
+    {
+    
+      Serial.println();
+  printDigits(hr);
+  Serial.print(":");
+  printDigits(minut);
+  Serial.print(":");
+  printDigits(sec);
+  Serial.print ("");
+  
+    controlLights();
+    change = 0;
+  }
+   Serial.print(modeState);
+   timedControl();
+  }
+  else
+  {
+    
+   Serial.print(modeState);
+    webserver();
+ }
+ 
+}
+
+
+
+ISR(TIMER1_COMPA_vect)
+{ 
+ Serial.print("++"); 
+  change = 1;
+  //interrupt commands here
+  sec++;        //seconds incrementing
+  if(sec == 60) //return to zero for recount
+  {
+    sec = 0;
+    minut++;   //minutes incrementing
+    if (minut == 60) //for counting hours
+    {
+      minut = 0;
+      hr++;
+      if (hr == 24);
+      {
+        hr = 0;
+      }
+    }
+  }
+  
+}
+
+void controlLights()
+{
+ if ((hr ==0) && (minut == 0) && (sec == 10))
+  {
+    X10.sendCmd( hcA, 1, cmdOn );
+    //delay(1);
+    Serial.println("Light is ON");
+  }
+  else if ((hr ==0) && (minut == 0) && (sec == 30))
+  {
+    X10.sendCmd( hcA, 1, cmdOff );
+    //delay(1);
+    Serial.println ("Light is OFF");
+  }
+}
+
+
+
+
+void printDigits(int digits)
+{
+
+  if(digits < 10)
+    Serial.print ('0');
+  Serial.print(digits);
+}
+
+
+
+
+
+// Possible changes to fix this ....
+
+
+
+
+   while (!Serial) {
+    ; // wait for serial port to connect. Needed for Leonardo only
+ 
+ 
+  cli();//stop or disable interrupts
+
+  //setting timer1 to interrupt at 1Hz
+  TCCR1A = 0;// setting entire TCCR1A register to 0
+  TCCR1B = 0;// setting entire TCCR1A register to 0
+  TCNT1  = 0;//initialize counter value to 0
+
+    // set compare match register for 1hz increments
+  OCR1A = 15624;// = (16*10^6) / (1*1024) - 1 (must be <65536)
+  // turn on CTC mode
+  TCCR1B |= (1 << WGM12);
+  // Set CS10 and CS12 bits for 1024 prescaler
+  TCCR1B |= (1 << CS12) | (1 << CS10); 
+  // enable timer compare interrupt
+  TIMSK1 |= (1 << OCIE1A);
+
+  sei();//enable interrupts
+  X10.init(RTS_PIN, DTR_PIN, BIT_DELAY);
+  }
