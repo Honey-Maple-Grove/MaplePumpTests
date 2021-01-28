@@ -38,7 +38,7 @@ const int W5500_SS = 10;
 
 void setup() {
   // Open serial communications and wait for port to open:
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -107,7 +107,7 @@ void setup() {
 
   SDFile dirRoot;
   dirRoot = SD.open("/");
-  String name = dirRoot.name;
+  String name = dirRoot.name();
   printDirectory(dirRoot, 0);
 }
 

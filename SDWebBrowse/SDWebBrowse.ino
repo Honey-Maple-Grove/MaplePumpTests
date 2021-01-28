@@ -97,7 +97,7 @@ void setup() {
   Serial.begin(115200);
   while (!Serial);      // For 32u4 based microcontrollers like 32u4 Adalogger Feather
  
-  //Serial.print(F("Free RAM: ")); Serial.println(FreeRam());  
+  Serial.print(F("Free RAM: ")); Serial.println(FreeRam());  
 
   pinMode(W5500_SS, OUTPUT);     // set the Ethernet SS pin as an output W5500_SS = 10/53
   pinMode(SDCARD_CS, OUTPUT);     // set the SD SS pin as an output usually 4
@@ -116,7 +116,7 @@ void setup() {
   Ethernet.begin(mac, ip, dns, gateway);
   // try to congifure using DHCP address instead of IP:
   //  Ethernet.begin(mac);
-  int dmac = Ethernet.MACAddress;
+  //int dmac = Ethernet.MACAddress;
 
   // print the Ethernet board/shield's IP address to Serial monitor
   Serial.print(F("My IP address: "));

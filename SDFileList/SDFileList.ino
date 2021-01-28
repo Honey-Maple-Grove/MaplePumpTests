@@ -38,7 +38,7 @@ void setup() {
 	// try to congifure using DHCP address instead of IP:
 
 	Serial.print("Initializing SD card...");
-	pinMode(10, OUTPUT); // required for SD lib
+	//pinMode(10, OUTPUT); // required for SD lib
 	digitalWrite(10, HIGH);
 	if (!SD.begin(4)) {
 		Serial.println("initialization failed!");
