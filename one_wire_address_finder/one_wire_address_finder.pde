@@ -6,7 +6,7 @@
 
 #include <OneWire.h>
 
-OneWire  ds(4);  // Connect your 1-wire device to pin 4
+OneWire  ds(2);  // Connect your 1-wire device to pin 2
 
 void discoverOneWireDevices(void) {
   byte i;

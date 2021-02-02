@@ -62,7 +62,7 @@ void error_P(const char* str) {
 void CheckSD(String message = "No message"){
 	digitalWrite(W5500_SS, HIGH);  //  turn off the W5500 chip for now  
 	digitalWrite(SDCARD_CS, LOW);  //  turn on the SD chip for now  
-	
+    Serial.println("Starting Check SD");
   if (!card.init(SPI_HALF_SPEED, SDCARD_CS)) {
     Serial.println("initialization failed. Things to check:");
     Serial.println("* is a card inserted?");
@@ -117,7 +117,7 @@ void setup() {
   // try to congifure using DHCP address instead of IP:
   //  Ethernet.begin(mac);
   //int dmac = Ethernet.MACAddress;
-
+  Serial.println("Ethernet Has Begun");
   // print the Ethernet board/shield's IP address to Serial monitor
   Serial.print(F("My IP address: "));
   Serial.println(Ethernet.localIP());
@@ -295,9 +295,9 @@ void loop()
 void printDirectory(SDFile dir, int numTabs) {
    while(true) {
      SDFile entry =  dir.openNextFile();
-	 Serial.println("start directory loop");
+	 //Serial.println("start directory loop");
      if (! entry) {
-		 Serial.println("no files found");
+		 // Serial.println("no files found");
        // no more files
        break;
      }
@@ -315,4 +315,5 @@ void printDirectory(SDFile dir, int numTabs) {
      }
      entry.close();
    }
+   // Serial.println("No More Entries");
 }
